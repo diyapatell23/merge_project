@@ -21,7 +21,7 @@
 
     <H2 style="text-align: center;">Diya Patel (24DEV069)</H2>
     <div class="dropdown" >
-        <select name="month" id="month" onchange="myfun()">
+        <select name="month" id="month" onchange="monthfunc()">
             <% if(month=="december-2023") {%>
                 <option value="december-2023" selected>December-2023</option></a>
                 <option value="january-2024">January-2024</option>
@@ -97,7 +97,7 @@
     </div>
 
     <script>
-        function myfun() {
+        function monthfunc() {
             let month = document.getElementById('month').value;
             console.log(month);
             window.location.href = `?month=${month}`;

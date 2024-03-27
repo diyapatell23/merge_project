@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td {
+            padding: 13px;
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Diya Patel(24DEV069)</h1>
+    <table border="1" style="margin: 50px auto;">
+        <thead>
+
+            <tr>
+                <td colspan="8" style="text-align: start;">
+                    <p>Name: <%=name%>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="8">
+                    <p>Attendence: <%=ans3[0].percentage%>%</p>
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="2">Subject</td>
+                <td colspan="2">Prelim</td>
+                <td colspan="2">Terminal</td>
+                <td colspan="2">Final</td>
+                <td rowspan="2">Total Marks</td>
+            </tr>
+            <tr>
+                <td>Theory</td>
+                <td>Practical</td>
+                <td>Theory</td>
+                <td>Practical</td>
+                <td>Theory</td>
+                <td>Practical</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% for(var i=0;i<ans2.length;i++) { %>
+                <tr>
+                    <td>
+                        <%=ans2[i].subject_name %>
+                    </td>
+                    <td>
+                        <%=ans2[i].theory_exam_marks %>
+                    </td>
+                    <td>
+                        <%=ans2[i].practical_exam_marks %>
+                    </td>
+                    <td>
+                        <%=ans4[i].theory_exam_marks %>
+                    </td>
+                    <td>
+                        <%=ans4[i].practical_exam_marks %>
+                    </td>
+                    <td>
+                        <%=ans5[i].theory_exam_marks %>
+                    </td>
+                    <td>
+                        <%=ans5[i].practical_exam_marks %>
+                    </td>
+                    <td>
+                        <%=ans2[i].theory_exam_marks + ans2[i].practical_exam_marks + ans4[i].theory_exam_marks +ans4[i].practical_exam_marks +ans5[i].theory_exam_marks + ans5[i].practical_exam_marks%>
+                    </td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+</body>
+
+</html>

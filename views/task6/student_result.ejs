@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        td{
+            text-align: center;
+            padding: 15px;
+        }
+
+        .filter{
+            margin-top: 50px;
+            margin-left: 42%;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+       
+        input{
+            height: 20px;
+        }
+
+       button{
+        height: 27px;
+        width: 40px;
+       }
+
+       .filter-data{
+        margin-left: 450px;
+        margin-top: 50px;
+       }
+
+    </style>
+</head>
+<body>
+    <H1 style="text-align: center;">Diya Patel(24DEV069)</H1>
+
+    <div class="filter" >
+        <input type="text" name="sid" id="sid" placeholder="Enter Student Id" tabindex="0">
+        <button onclick="myfun()" >Go</button>
+        <p onclick="myfun2()">Show More</p><br>
+    </div>
+
+    <div class="filter-data"  id="filter-data" style="display: none;">
+        <input type="text" name="name" id="name" placeholder="Enter Name">
+        <input type="text" name="email" id="email" placeholder="Enter Email">
+        <input type="text" name="contactno" id="contactno" placeholder="Enter ContactNo">
+        <select name="operator" id="operator">
+            <option value="and">AND</option>
+            <option value="or">OR</option>
+        </select>
+
+        <button onclick="myfun3()">Go</button>
+    </div>
+  
+
+    <table border="1" style="margin: 50px auto;">
+        <thead>
+            <tr>
+                <td rowspan="2">Student Id</td>
+                <td rowspan="2">Name</td>
+                <td rowspan="2">Email</td>
+                <td rowspan="2">Contact No</td>
+                <td colspan="2">Prelim</td>
+                <td colspan="2">Terminal</td>
+                <td colspan="2">Final</td>
+                <td rowspan="2">Total</td>
+                <td rowspan="2">View Details</td>
+            </tr>
+            <tr>
+                <td>Theory</td>
+                <td>Practical</td>
+                <td>Theory</td>
+                <td>Practical</td>
+                <td>Theory</td>
+                <td>Practical</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% for(var i=0;i<user1.length;i++) { %>
+                <tr>
+                    <td>
+                        <%=user1[i].student_id %>
+                    </td>
+                    <td>
+                        <%=user1[i].Name %>
+                    </td>
+                    <td>
+                        <%=user1[i].Email%>
+                    </td>
+                    <td>
+                        <%=user1[i].ContactNo%>
+                    </td>
+                    <td>
+                        <%=user1[i].p_theory%>
+                    </td>
+                    <td>
+                        <%=user1[i].p_practical %> 
+                    </td>
+                    <td>
+                        <%=user2[i].t_theory%>
+                    </td>
+                    <td>
+                        <%=user2[i].t_practical %> 
+                    </td>
+                    <td>
+                        <%=user3[i].f_theory%>
+                    </td>
+                    <td>
+                        <%=user3[i].f_practical %> 
+                    </td>
+                    <td>
+                        <%=user1[i].p_theory + user1[i].p_practical + user2[i].t_theory+ user2[i].t_practical + user3[i].f_theory + user3[i].f_practical%>
+                    </td>
+                    <td>
+                        <a href="/userdetail/<%=user1[i].student_id %>/<%=user1[i].Name%>"><button style="height: 40px; width: 100px;">View Details</button></a>
+                    </td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+
+    <%if(pageno!== false){%>
+    <div class="container" style="display: flex;">
+        <div class="buttons" style="display: flex; margin: 0 auto;">
+            <% if(pageno == 1) { %>
+           <a href=""><button disabled><<</button></a>
+           <a href=""><button disabled><</button></a>
+           <% } else {%>
+            <a href="<%= pageno-1%>"><button ><</button></a>
+            <a href="1"><button ><<</button></a>
+            <% } %>
+
+            <a href=""><button><%= pageno %></button></a>
+
+            <% if(pageno == 2) { %>
+            <a href=""><button disabled>></button></a>
+            <a href=""><button disabled>>></button></a>
+            <% } else {%>
+            <a href="<%= pageno+1%>"><button >></button></a>
+            <a href="2"><button >>></button></a>
+           <% } %>
+        </div>
+    </div>
+   <% }%>
+
+    <script>
+        function myfun(){
+            let id = document.getElementById('sid').value;
+            console.log(id);
+            window.location.href = `/search?id=${id}`;
+        }
+
+        function myfun2(){
+            let data = document.getElementById('filter-data');
+          
+            if(data.style.display == "none"){
+                data.style.display = "block";
+            } 
+            else if(data.style.display == "block"){
+                data.style.display = "none";
+            }
+        }
+
+        function myfun3(){
+            let name = document.getElementById('name').value;
+            let email = document.getElementById('email').value;
+            let number = document.getElementById('contactno').value;
+            let operator = document.getElementById('operator').value;
+            window.location.href = `/search2?operator=${operator}&name=${name}&email=${email}&number=${number}`;
+        }
+
+
+    </script>
+    
+   
+</body>
+</html>
