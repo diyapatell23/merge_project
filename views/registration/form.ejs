@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .container {
+            margin: 10px auto;
+            height: 400px;
+            width: 500px;
+        }
+
+        input[type=text],
+        input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: 1px solid grey;
+            border-radius: 10px;
+        }
+
+        input[type=text]:focus,
+        input[type=password]:focus{
+            background-color: #ddd;
+            outline: none;
+        }
+
+        #btn {
+            background-color: rgb(58, 58, 170);
+            color: white;
+            padding: 16px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+        }
+
+        #btn:hover {
+            opacity: 1;
+        }
+
+        span {
+            margin-bottom: 100px;
+            color: red;
+            font-size: 15px;
+        }
+        
+        .signin {
+            background-color: #f1f1f1;
+            text-align: center;
+        }
+       
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 style="text-align: center; margin-top: 50px;">Diya Patel(24DEV069)</h1>
+    <h3 style="margin-left: 43%; margin-top: 60px; font-size: 25px;">Registration Form</h3>
+    <form action="/login" method="post" onsubmit="return validationfun()">
+        <div class="container">
+            <br>
+            <label for="name">User Name</label><br>
+            <input type="text" name="name" id="name" placeholder="Enter Name"><br>
+            <span id="name_error"></span><br>
+            <span id="userid_error"></span><br>
+            <label for="email" style="margin-top: 10px;">Email</label><br>
+            <input type="text" name="email" id="email" placeholder="Enter Email"><br>
+            <span id="email_error"></span><br>
+            <span id="emailid_error"></span><br>
+
+            <label for="password">Password</label><br>
+            <input type="password" name="password" id="password" placeholder="Enter Passowrd"><br>
+            <span id="password_error"></span><br>
+
+            <input type="submit" value="Sign Up" id="btn">
+
+            <div class="signin">
+                <p>Already have an account? <a href="loginform">Sign in</a>.</p>
+            </div>
+        </div>
+    </form>
+    <script>
+        if (`<%=user[0].username%>`) {
+            document.getElementById('userid_error').innerHTML = "username already exists";
+        }
+        
+        if (`<%=user[0].email%>`) {
+            document.getElementById('emailid_error').innerHTML = "email already exists";
+        }
+
+        function validationfun(){
+            var regName = /^[A-z]+$/;
+            const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+            let flag = true;
+            let name = document.getElementById('name').value;
+            let email = document.getElementById('email').value;
+            let password = document.getElementById('password').value;
+
+
+            //username validation
+            if (name === "") {
+                document.getElementById('name_error').innerHTML = "please enter username";
+                flag = false;
+            }
+            else if (name.length > 20){
+                document.getElementById('name_error').innerHTML = "please enter valid username";
+                flag = false;
+            }
+            else if (!regName.test(name)){
+                document.getElementById('name_error').innerHTML = "please enter valid username";
+                flag = false;
+            }
+            else {
+                document.getElementById('name_error').innerHTML = "";
+            }
+
+            //email validation
+            if (email === "") {
+                document.getElementById('email_error').innerHTML = "please enter email"
+                flag = false;
+            }
+            else if (!emailRegex.test(email)) {
+                document.getElementById('email_error').innerHTML = "please enter valid email"
+                flag = false;
+            }
+            else {
+                document.getElementById('email_error').innerHTML = ""
+            }
+
+            //password validation
+            if (password === "") {
+                document.getElementById('password_error').innerHTML = "please enter password"
+                flag = false;
+            }
+            else {
+                document.getElementById('password_error').innerHTML = ""
+            }
+            return flag;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .container {
+            margin: 0 auto;
+            height: 400px;
+            width: 500px;
+        }
+
+        input[type=text],
+        input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: 1px solid grey;
+            border-radius: 10px;
+        }
+
+        input[type=text]:focus,
+        input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+        #btn {
+            background-color: rgb(58, 58, 170);
+            color: white;
+            padding: 16px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 110%;
+            opacity: 0.9;
+        }
+
+        #btn:hover {
+            opacity: 1;
+        }
+
+        span {
+            margin-bottom: 100px;
+            color: red;
+            font-size: 15px;
+        }
+        .signup {
+            text-align: center;
+        }
+        .forgotpassword{
+            margin-top: -40px;
+            text-align: center;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="text-align: center; margin-top: 50px;">Diya Patel(24DEV069)</h1>
+    <h3 style="margin-left: 47%; margin-top: 60px; font-size: 25px; ">Login</h3>
+
+    <form action="loginform" method="post" >
+        <div class="container">
+            <br>
+            <label for="name">User Name</label><br>
+            <input type="text" name="name" id="name" placeholder="Enter Name"><br>
+            <span id="name_error"></span><br>
+
+            <label for="password">Password</label><br>
+            <input type="password" name="password" id="password" placeholder="Enter Passowrd"><br>
+            <span id="password_error"></span><br>
+            <span id="error"></span><br>
+            <input type="submit" value="Sign In" id="btn">
+        </div>
+
+        <div class="forgotpassword">
+            <a href="forgotpassword">Forgot Password?</a>
+        </div>
+        <div class="signup">
+            <p>Have not registered? <a href="registration">Sign up</a>.</p>
+        </div>
+    </form>
+   
+</body>
+
+</html>

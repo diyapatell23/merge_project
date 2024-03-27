@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tic-tac-toe</title>
+
+    <style>
+        body{
+            background-color: grey;
+        }
+        table{
+            margin: 5% 40%;
+            border: 2px solid white;
+            border-radius: 7px;
+            height: 300px;
+            width: 300px;
+        }
+        td{
+            border: 2px solid white;
+            /* padding: 20px; */
+            width: 90px;
+            height: 90px;
+            font-size: 40px;
+            text-align: center;
+            color: white;
+        }
+        h1,h2{
+            text-align: center;
+            color: white;
+            margin-top: 5%;
+        }
+        #result{
+            width: 6%;
+            height: 25%;
+            margin-left: 48%;
+            padding: 6px;
+            font-size: 20px;
+            
+        }
+    </style>
+</head>
+<body>
+    <h1>Diya Patel &nbsp; 24DEV069 &nbsp; 05/02/2024</h1>
+    <h2>Tic-Tac-Toe</h2>
+    <table border="1" cellpadding="0" cellspacing="0" id="table1">
+        <tr>
+            <td id="id1"></td>
+            <td id="id2"></td>
+            <td id="id3"></td>
+        </tr>
+        <tr>
+            <td id="id4"></td>
+            <td id="id5"></td>
+            <td id="id6"></td>
+        </tr>
+        <tr>
+            <td id="id7"></td>
+            <td id="id8"></td>
+            <td id="id9"></td>
+        </tr>
+    </table>
+
+    <input type="button" value="reset" id="result" onclick="location.reload()">
+
+    <script>
+
+        let turn = 0;
+        const table = document.getElementById('table1');
+        let td = document.getElementsByTagName("td");
+        table.addEventListener("click",function(e){
+            if(turn==0){
+                var id = e.target.getAttribute("id");
+                document.getElementById(id).innerText = "o";
+                turn ++;
+            }
+            else if(turn ==1){
+                var id = e.target.getAttribute("id");
+                var val = document.getElementById(id).innerText;
+                if(val != "o" && val != "x"){
+                    document.getElementById(id).innerText = "x";
+                    turn ++;
+                }
+                else{
+                    alert("Not valid entry");
+                }
+            }
+
+            else if(turn ==2){
+                var id = e.target.getAttribute("id");
+                var val = document.getElementById(id).innerText;
+                if(val != "o" && val != "x"){
+                    document.getElementById(id).innerText = "o";
+                    turn ++;
+                }
+                else{
+                    alert("Not valid entry");
+                }
+            }
+            else if(turn ==3){
+                var id = e.target.getAttribute("id");
+                var val = document.getElementById(id).innerText;
+                if(val != "o" && val != "x"){
+                    document.getElementById(id).innerText = "x";
+                    turn ++;
+                }
+                else{
+                    alert("Not valid entry");
+                }
+            }
+            else if(turn ==4){
+                var id = e.target.getAttribute("id");
+                var val = document.getElementById(id).innerText;
+                if(val != "o" && val != "x"){
+                    document.getElementById(id).innerText = "o";
+                    winner();
+                    turn ++;
+                   
+                }
+                else{
+                    alert("Not valid entry");
+                }
+            }
+            else if(turn ==5){
+                var id = e.target.getAttribute("id");
+                var val = document.getElementById(id).innerText;
+                if(val != "o" && val != "x"){
+                    document.getElementById(id).innerText = "x";
+                    winner();
+                    turn ++;
+                }
+                else{
+                    alert("Not valid entry");
+                }
+            }
+            else if(turn ==6){
+                var id = e.target.getAttribute("id");
+                var val = document.getElementById(id).innerText;
+                if(val != "o" && val != "x"){
+                    document.getElementById(id).innerText = "o";
+                    winner();
+                    turn ++;
+                }
+                else{
+                    alert("Not valid entry");
+                }
+            }
+            else if(turn ==7){
+                var id = e.target.getAttribute("id");
+                var val = document.getElementById(id).innerText;
+                if(val != "o" && val != "x"){
+                    document.getElementById(id).innerText = "x";
+                    winner();
+                    turn ++;
+                }
+                else{
+                    alert("Not valid entry");
+                }
+            }
+            else if(turn ==8){
+                var id = e.target.getAttribute("id");
+                var val = document.getElementById(id).innerText;
+                if(val != "o" && val != "x"){
+                    document.getElementById(id).innerText = "o";
+                    winner();
+                    turn ++;
+                }
+                else{
+                    alert("Not valid entry");
+                }
+            }
+        })
+        function winner(){
+            if(
+                td[0].innerText=="o" && td[1].innerText=="o" && td[2].innerText=="o" ||
+                td[3].innerText=="o" && td[4].innerText=="o" && td[5].innerText=="o" ||
+                td[6].innerText=="o" && td[7].innerText=="o" && td[8].innerText=="o" ||
+                td[0].innerText=="o" && td[3].innerText=="o" && td[6].innerText=="o" ||
+                td[1].innerText=="o" && td[4].innerText=="o" && td[7].innerText=="o" ||
+                td[2].innerText=="o" && td[5].innerText=="o" && td[8].innerText=="o" ||
+                td[0].innerText=="o" && td[4].innerText=="o" && td[8].innerText=="o" ||
+                td[2].innerText=="o" && td[4].innerText=="o" && td[6].innerText=="o" 
+            ){
+                alert("User one wins...");
+                location.reload();
+            }
+            if(
+                td[0].innerText=="x" && td[1].innerText=="x" && td[2].innerText=="x" ||
+                td[3].innerText=="x" && td[4].innerText=="x" && td[5].innerText=="x" ||
+                td[6].innerText=="x" && td[7].innerText=="x" && td[8].innerText=="x" ||
+                td[0].innerText=="x" && td[3].innerText=="x" && td[6].innerText=="x" ||
+                td[1].innerText=="x" && td[4].innerText=="x" && td[7].innerText=="x" ||
+                td[2].innerText=="x" && td[5].innerText=="x" && td[8].innerText=="x" ||
+                td[0].innerText=="x" && td[4].innerText=="x" && td[8].innerText=="x" ||
+                td[2].innerText=="x" && td[4].innerText=="x" && td[6].innerText=="x" 
+            ){
+                alert("User two wins...");
+                location.reload();
+            }
+        }
+    </script>
+</body>
+</html>

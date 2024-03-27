@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        .container{
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <p>click below link to login</p>
+        <a href="activationlink/<%=userid%>/<%=activationkey%>" id="link">Activation Link</a>
+    </div>
+    <script>
+        function expiry(){
+            let link = document.getElementById('link');
+            link.onclick = function(event){
+                event.preventDefault();
+                alert('Link Expires');
+            }
+        }
+        setTimeout(expiry, 5000);
+    </script>
+</body>
+</html>

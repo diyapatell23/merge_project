@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+
+    <style>
+        table {
+            margin: 50px auto;
+        }
+
+        tr {
+            height: 50px;
+        }
+
+        td {
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        #td1 {
+            background-color: lightgrey;
+
+        }
+
+        #td2,
+        #td3,
+        #td4 {
+            background-color: grey;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            margin-right: 170px;
+        }
+
+        #btn1 {
+            width: 2%;
+            height: 27px;
+            color: black;
+        }
+    </style>
+
+
+</head>
+
+<body onload="timer()">
+    <h1 style="margin-left: 25%;">Diya Patel &nbsp; 24DEV069 &nbsp; 02/02/2024 </h1>
+
+    <div class="container">
+        <span id="score"></span>
+        <span id="score2"></span>
+        <span id="btn1"></span>
+        <input type="button" value="pause" id="pause">
+    </div>
+
+
+    <table border="1" cellspacing="0" cellpadding="0" id="table">
+        <tr>
+            <td id="td1" onclick="myFun()"></td>
+            <td id="td2"></td>
+        </tr>
+        <tr>
+            <td id="td3"></td>
+            <td id="td4"></td>
+        </tr>
+    </table>
+
+
+    <script>
+        var count = 0;
+
+        function myFun() {
+
+            
+            count++;
+            console.log(count);
+            document.getElementById("score").innerHTML = count;
+            //insert row
+
+            let table1 = document.getElementById("table");
+            let a = table1.rows.length;
+            let row = table.insertRow(a);
+            let cell = table1.rows[0].cells.length;
+            for (var i = 0; i < cell; i++) {
+                var cell_plus = row.insertCell(i);
+            }
+
+            //insert column
+            for (var j = 0; j < table1.rows.length; j++) {
+                let column = table1.rows[j].insertCell(cell);
+            }
+
+            //color
+
+            var total = (table1.rows.length) * (table1.rows[0].cells.length);
+            console.log(total);
+            var var1 = document.getElementsByTagName('td');
+
+
+            const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+
+            for (let i = 0; i < total; i++) {
+                var1[i].style.backgroundColor = "#" + randomColor;
+                var1[i].style.opacity = "1";
+            }
+
+
+            let cells = document.getElementById("table").getElementsByTagName('td');
+            let random_number = Math.floor(Math.random() * (total - 4) + 4);
+            console.log(random_number);
+
+
+            cells[random_number].style.opacity = "0.5";
+
+            cells[random_number].addEventListener("click", myFun);
+
+            
+            var countDisplay = document.getElementById("score");
+            cells[random_number].addEventListener("click", function () {
+                
+                
+                countDisplay.innerHTML = count;
+                
+            });
+            
+            for(let i = 0; i<total; i++){
+                let element= document.getElementsByTagName(td[i]);
+                element.onclick = null;
+            }
+        }
+
+        function timer() {
+            var sec = 10;
+            var timer = setInterval(function () {
+                document.getElementById('btn1').innerHTML = '00:' + sec;
+                sec--;
+                if (sec < 0) {
+                    alert("Game Over!!");
+                    clearInterval(timer);
+                    window.location.reload();
+                }
+            }, 1000);
+
+            const pauseButton = document.querySelector('#pause');
+            pauseButton.disabled = false;
+
+            pauseButton.addEventListener('click', () => {
+                pauseButton.disabled = true;
+                clearInterval(timer);
+                alert("Game Paused!!")
+            })
+
+        }
+
+    </script>
+</body>
+
+</html>

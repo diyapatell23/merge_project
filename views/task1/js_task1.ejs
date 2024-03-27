@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task1</title>
+    <style>
+        body {
+            background-color: lightgray;
+        }
+
+        h1 {
+            margin-left: 25%;
+            margin-top: 30px;
+        }
+
+        th,td,tr {
+            border: 3px solid black;
+        }
+
+        table {
+            width: 30%;
+
+            border-collapse: collapse;
+            margin-left: 30%;
+            border-radius: 6px;
+        }
+
+        tr {
+            height: 30px;
+        }
+
+        tr,
+        td {
+            background-color: grey;
+        }
+
+        .button {
+            height: 30px;
+            width: 100px;
+            font-size: 22px;
+            background-color: grey;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+
+        .class1 {
+            margin-left: 60%;
+            margin-bottom: 5px;
+            margin-top: 40px;
+        }
+
+        .class2 {
+            margin-left: 15%;
+            margin-top: 5px;
+        }
+
+        tr:nth-of-type(even) td:nth-of-type(odd),
+        tr:nth-of-type(odd) td:nth-of-type(even) {
+            background-color: rgb(36, 34, 34);
+        }
+    </style>
+</head>
+
+<body>
+    <h1> Diya Patel &nbsp; 24DEV069 &nbsp; 01/02/2024</h1>
+    <div class="class1">
+        <input type="button" value="+row" id="button1" class="button" onclick="myfunction1()">
+        <input type="button" value="-row" id="button2" class="button" onclick="myfunction2()">
+
+    </div>
+    <table id="table1">
+        <tr id="tr1">
+            <td></td>
+            <td></td>
+        </tr>
+
+        <tr id="tr1">
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <div class="class2">
+        <input type="button" value="+column" id="button3" class="button" onclick="myfunction3()">
+        <input type="button" value="-column" id="button4" class="button" onclick="myfunction4()">
+    </div>
+
+    <script>
+
+        function myfunction1() {
+            let x = document.getElementById("table1");
+            let cols = x.rows[0].cells.length;
+            let row_plus = x.insertRow(x.rows.length);
+
+
+            for(var i= 0; i<cols;i++){
+               var cell = row_plus.insertCell(i);
+            }
+        }
+
+        function myfunction2() {
+            let x = document.getElementById("table1");
+            let rows = x.rows.length;
+            if(rows<3){
+                alert("alert");
+            }
+            else if(rows>2){
+                document.getElementById("table1").deleteRow(rows-1);
+            }
+        }
+
+        function myfunction3() {
+            let y = document.getElementById("table1");
+            var i;
+            for (i = 0; i < y.rows.length; i++) {
+                let column_plus = y.rows[i].insertCell(2);
+            }
+        }
+
+        function myfunction4() {
+            var table = document.getElementById("table1");
+            var rowCount = table.rows.length;
+            let cols = table.rows[0].cells.length;
+            if(cols<3){
+                alert("alert");
+            }
+            else if(cols>2){
+                for (var i = 0; i < rowCount; i++) {
+                table.rows[i].deleteCell(cols-1);
+            }
+            }
+            
+        }
+    </script>
+</body>
+
+</html>
