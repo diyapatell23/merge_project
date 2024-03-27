@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <title>Document</title>
+
+    <style>
+       a{
+        padding: 5px;
+        margin-top: 20px;
+       }
+       td{
+        min-width: 150px;
+        padding: 10px;
+       }
+        
+    </style>
+</head>
+<body>
+        <h1 style="text-align: center; margin-top: 50px;">Diya Patel(24DEV069)</h1>
+        <table border="1">
+            <thead>
+           <tr style="height: 50px;">
+            <td style="width: 100px;"><a href="/sort/Id/<%= pageno%>"><button>Id</button></a><a href="/sort/Id/aesc/<%= pageno%>">&uarr;</a><a href="/sort/Id/desc/<%= pageno%>">&darr;</a></td>
+            <td style="width: 150px;"><a href="/sort/firstname/<%= pageno%>"><button>FirstName</button></a><a href="/sort/firstname/aesc/<%= pageno%>">&uarr;</a><a href="/sort/firstname/desc/<%= pageno%>">&darr;</a></td>
+            <td style="width: 190px;"><a href="/sort/middlename/<%= pageno%>"><button>MiddleName</button></a></a><a href="/sort/middlename/aesc/<%= pageno%>">&uarr;</a><a href="/sort/middlename/desc/<%= pageno%>">&darr;</a> </td>
+            <td style="width: 150px;"><a href="/sort/lastname/<%= pageno%>"><button>LastName</button></a></a><a href="/sort/lastname/aesc/<%= pageno%>">&uarr;</a><a href="/sort/lastname/desc/<%= pageno%>">&darr;</a></td>
+            <td style="width: 170px;"><a href="/sort/contact_no/<%= pageno%>"><button>Contact No</button></a></a><a href="/sort/contact_no/aesc/<%= pageno%>">&uarr;</a><a href="/sort/contact_no/desc/<%= pageno%>">&darr;</a></td>
+            <td><a href="/sort/email/<%= pageno%>"><button>Email</button></a></a><a href="/sort/email/aesc/<%= pageno%>">&uarr;</a><a href="/sort/email/desc/<%= pageno%>">&darr;</a></td>
+            <td><a href="/sort/address/<%= pageno%>"><button>Address</button></a></a><a href="/sort/address/aesc/<%= pageno%>">&uarr;</a><a href="/sort/address/desc/<%= pageno%>">&darr;</a></td>
+            <td style="width: 110px;"><a href="/sort/city/<%= pageno%>"><button>City</button></a></a><a href="/sort/city/aesc/<%= pageno%>">&uarr;</a><a href="/sort/city/desc/<%= pageno%>">&darr;</a></td>
+            <td><a href="/sort/state/<%= pageno%>"><button>State</button></a></a><a href="/sort/state/aesc/<%= pageno%>">&uarr;</a><a href="/sort/state/desc/<%= pageno%>">&darr;</a></td>
+            <td style="width: 150px;"><a href="/sort/country/<%= pageno%>"><button>Country</button></a></a><a href="/sort/country/aesc/<%= pageno%>">&uarr;</a><a href="/sort/country/desc/<%= pageno%>">&darr;</a></td>
+           </tr>
+        </thead>
+
+        <tbody>
+           <% for(var i=0;i<user.length;i++) { %>
+           <tr>
+            <td><%=user[i].id %></td>
+            <td><%=user[i].firstname %></td>
+            <td><%=user[i].middlename %></td>
+            <td><%=user[i].lastname %></td>
+            <td><%=user[i].contact_no%></td>
+            <td><%=user[i].email %></td>
+            <td><%=user[i].address %></td>
+            <td><%=user[i].city %></td>
+            <td><%=user[i].state %></td>
+            <td><%=user[i].country %></td>
+           </tr>
+           <% } %>
+        </tbody>
+        </table>
+
+        <div class="container" style="display: flex;">
+            <div class="buttons" style="display: flex; margin: 0 auto;">
+                <% if(pageno == 1) { %>
+               <a href=""><button disabled><<</button></a>
+               <a href=""><button disabled><</button></a>
+               <% } else {%>
+                <a href="<%= pageno-1%>"><button ><</button></a>
+                <a href="1"><button ><<</button></a>
+                <% } %>
+
+                <a href=""><button><%= pageno %></button></a>
+
+                <% if(pageno == 10) { %>
+                <a href=""><button disabled>></button></a>
+                <a href=""><button disabled>>></button></a>
+                <% } else {%>
+                <a href="<%= pageno+1%>"><button >></button></a>
+                <a href="10"><button >>></button></a>
+               <% } %>
+            </div>
+        </div>
+
+</body>
+</html>

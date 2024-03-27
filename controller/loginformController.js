@@ -1,22 +1,8 @@
+
+const connection = require('../config/config');
 const md5 = require('md5');
 const crypto = require('crypto');
-const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
-
-
-const connection = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "diya",
-    database: "loginform_db"
-})
-
-connection.connect((err) => {
-    if (err){
-        console.log(err);
-    }
-    console.log("connected to database");
-})
 
 
 const registration = (req,res)=>{
@@ -35,9 +21,11 @@ const login = (req,res)=>{
     var val = Math.floor(1000 + Math.random() * 9000);
     var token = crypto.randomBytes(12).toString('hex');
     let query2 = `SELECT username, email FROM users WHERE username ="${name}" AND email="${email}"`;
+    
     connection.query(query2, function (err, result) {
-        if (result.length != 0) {
-            res.render('./registration/form', { user: result });
+        console.log("resulttt", result)
+        if (result.length !== 0) {
+            res.render('./registration/form', {user: result });
         }
         else {
             let query = `INSERT INTO users(username ,email ,password,e_password, salt, activationcode ,activationstatus) VALUES("${name}", "${email}" ,"${password}","${finalpassword}", "${val}", "${token}", 0)`
@@ -79,6 +67,7 @@ const loginform = (req,res)=>{
 
 const finallogin = (req,res)=>{
     let data = req.body;
+    console.log("data", data)
     let name = req.body.name;
     let password = req.body.password;
     var token = crypto.randomBytes(12).toString('hex');
@@ -86,10 +75,11 @@ const finallogin = (req,res)=>{
     const jwtToken = jwt.sign(payload,token, {expiresIn:'1h'});
     let query = `SELECT username , password ,activationstatus FROM users WHERE username="${name}" AND password="${password}" AND activationstatus=1`
     connection.query(query, function (err, result) {
+        console.log("rsult", result)
         if (err) {
             console.log(err);
         }
-        if (result.length > 0){
+        else if (result.length > 0){
             // res.cookie("jwtToken", jwtToken).send("login succesfully");
             res.cookie("jwtToken",jwtToken);
             res.render('./registration/main');

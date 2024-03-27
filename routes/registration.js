@@ -7,7 +7,7 @@ router.get('/registration',controller.registration);
 router.post('/login',controller.login);
 router.get('/activationlink/:userid/:activationkey', controller.activation);
 router.get('/loginform',controller.loginform);
-router.post('/loginform', controller.finallogin);
+router.post('/tasks', controller.finallogin);
 router.get('/forgotpassword',controller.getforgotpassword);
 router.post('/forgotpassword', controller.setforgotpassword);
 router.get('/setpassword/:id', controller.getpassword);
