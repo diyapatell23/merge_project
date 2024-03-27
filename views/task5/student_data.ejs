@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        td{
+            padding: 14px;
+        }
+        .dropdown{
+           margin-left: 45%;
+           margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <H2 style="text-align: center;">Diya Patel (24DEV069)</H2>
+    <div class="dropdown" >
+        <select name="month" id="month" onchange="myfun()">
+            <% if(month=="december-2023") {%>
+                <option value="december-2023" selected>December-2023</option></a>
+                <option value="january-2024">January-2024</option>
+                <option value="february-2024">February-2024</option>
+             <% }%>
+
+             <% if(month=="january-2024") {%>
+                <option value="december-2023">December-2023</option></a>
+                <option value="january-2024" selected>January-2024</option>
+                <option value="february-2024">February-2024</option>
+             <% }%>
+
+             <% if(month=="february-2024") {%>
+                <option value="december-2023" >December-2023</option></a>
+                <option value="january-2024">January-2024</option>
+                <option value="february-2024" selected>February-2024</option>
+             <% }%>
+        </select>
+    </div>
+
+    <table border="1" style="margin: 30px auto;">
+        <thead>
+            <tr>
+                <td>Student Id</td>
+                <td>Name</td>
+                <td>Present Days</td>
+                <td>Present Days in %</td>
+                <td>&nbsp;&nbsp;</td>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% for(var i=0;i<user.length;i++) { %>
+                <tr>
+                    <td>
+                        <%=user[i].student_id %>
+                    </td>
+                    <td>
+                        <%=user[i].Name %>
+                    </td>
+                    <td>
+                        <%=user[i].att %>
+                    </td>
+                    <td>
+                        <%=user[i].percentage %> %
+                    </td>
+                    <td></td>
+                </tr>
+                <% } %>
+        </tbody>
+    </table>
+
+    <div class="container" style="display: flex;">
+        <div class="buttons" style="display: flex; margin: 0 auto;">
+            <% if(pageno == 1) { %>
+           <a href=""><button disabled><<</button></a>
+           <a href=""><button disabled><</button></a>
+           <% } else {%>
+            <a href="<%= pageno-1%>"><button ><</button></a>
+            <a href="1"><button ><<</button></a>
+            <% } %>
+
+            <a href=""><button><%= pageno %></button></a>
+
+            <% if(pageno == 2) { %>
+            <a href=""><button disabled>></button></a>
+            <a href=""><button disabled>>></button></a>
+            <% } else {%>
+            <a href="<%= pageno+1%>"><button >></button></a>
+            <a href="2"><button >>></button></a>
+           <% } %>
+        </div>
+    </div>
+
+    <script>
+        function myfun() {
+            let month = document.getElementById('month').value;
+            console.log(month);
+            window.location.href = `?month=${month}`;
+        }   
+    </script>
+
+</body>
+
+</html>

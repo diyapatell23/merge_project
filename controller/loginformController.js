@@ -73,6 +73,7 @@ const finallogin = (req,res)=>{
     var token = crypto.randomBytes(12).toString('hex');
     const payload = {email:name};
     const jwtToken = jwt.sign(payload,token, {expiresIn:'1h'});
+    console.log("jwttoken", jwtToken)
     let query = `SELECT username , password ,activationstatus FROM users WHERE username="${name}" AND password="${password}" AND activationstatus=1`
     connection.query(query, function (err, result) {
         console.log("rsult", result)
