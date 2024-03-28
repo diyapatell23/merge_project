@@ -116,7 +116,7 @@
                         <%=user1[i].p_theory + user1[i].p_practical + user2[i].t_theory+ user2[i].t_practical + user3[i].f_theory + user3[i].f_practical%>
                     </td>
                     <td>
-                        <a href="/userdetail/<%=user1[i].student_id %>/<%=user1[i].Name%>"><button style="height: 40px; width: 100px;">View Details</button></a>
+                        <a href="task6/userdetail/<%=user1[i].student_id %>/<%=user1[i].Name%>"><button style="height: 40px; width: 100px;">View Details</button></a>
                     </td>
                 </tr>
                 <% } %>
@@ -171,7 +171,7 @@
             let email = document.getElementById('email').value;
             let number = document.getElementById('contactno').value;
             let operator = document.getElementById('operator').value;
-            window.location.href = `/search2?operator=${operator}&name=${name}&email=${email}&number=${number}`;
+            window.location.href = `/task6/search2?operator=${operator}&name=${name}&email=${email}&number=${number}`;
         }
 
 

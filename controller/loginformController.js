@@ -54,7 +54,7 @@ const activation = (req,res)=>{
             else {
                 let query2 = `UPDATE users SET activationstatus=1 WHERE activationstatus=0`;
                 connection.query(query2, function (err, result) {
-                    res.send("<p>activation successfully</p><a href='/loginform'>Login Form</a>");
+                    res.send("<p>activation successfully</p><a href='/main/loginform'>Login Form</a>");
                 });
             }
         }
@@ -103,7 +103,7 @@ const setforgotpassword = (req,res)=>{
             console.log(err);
         }
         if(result.length >0){  
-            res.send(`<p>User Validated Successfully</p><a href='/setpassword/${result[0].id}'>Click here</a>`)
+            res.send(`<p>User Validated Successfully</p><a href='/main/setpassword/${result[0].id}'>Click here</a>`)
         }else{
             res.send('invalid username or email')
         }
