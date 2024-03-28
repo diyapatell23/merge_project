@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        td{
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Diya Patel(24DEV069)</h1>
+    
+    <form action="/task8/userdata" method="post">
+        <input type="text" name="query" id="query" placeholder="Type here" style="width: 600px;" value="<%=query%>">
+        <button>Go</button>
+    </form>
+    
+    <table border="1" style="margin-top: 30px;">
+        <tr>
+            <td>
+                FirstName
+            </td>
+            <td>_</td>
+        </tr>
+        <tr>
+            <td>LastName</td>
+            <td>^</td>
+        </tr>
+        <tr>
+            <td>Email</td>
+            <td>$</td>
+        </tr>
+        <tr>
+            <td>Age</td>
+            <td>}</td>
+        </tr>
+        <tr>
+            <td>ContactNo</td>
+            <td>{</td>
+        </tr>
+        <tr>
+            <td>City</td>
+            <td>:</td>
+        </tr>
+    </table>
+    <% if(fields!==false ) { %>
+    <table border="1" style="margin-top: 30px;">
+        <thead>
+            <tr>
+                <% for(var k=0;k<fields.length;k++) { %>
+                    <td>
+                        <%=fields[k].name %>
+                    </td>
+
+                <% } %>
+            </tr>
+        </thead>
+
+        <tbody>
+            <% for(var i=0;i<user.length;i++) { %>
+                <tr >
+                    <% for(var j=0;j<fields.length;j++) { %>
+                    <td><%=user[i][fields[j].name]%></td>
+                    <% } %>
+                </tr>
+                <% } %>
+            </tbody>
+    </table>
+    <% } %>
+</body>
+</html>
