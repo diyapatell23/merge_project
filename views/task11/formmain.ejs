@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            color: red;
+            font-size: 14px;
+            font-weight: lighter;
+        }
+    </style>
+</head>
+
+<body>
+
+    <% if(user[0].Fname){ %> 
+        <form action="/task11/updateuser/<%=id%>" method="post" onsubmit="return validateform()" name="myform">
+    <% } else{ %>     
+    <form action="/task11/adduser" method="post" onsubmit="return validateform()" name="myform">
+     <% } %>   
+        <h1>Job Application Form</h1>
+        <fieldset>
+            <legend>
+                <h2>Basic Detail</h2>
+            </legend>
+
+            <label for="First Name">First Name : </label><input type="text" name="fname" id="fname"
+                value="<%=user[0].Fname%>" class="basic_check" /> &emsp;<span id="error_fname"></span>
+            <label for="Last Name">Last Name : </label><input type="text" name="lname" id="lname" class="basic_check"
+                value="<%=user[0].Lname%>">
+            <span id="error_lname"></span><br>
+            <br>
+
+            <label for="Designation ">Designation : </label><input type="text" name="designation" id="designation"
+                value="<%=user[0].Designation%>" class="basic_check"> &emsp;<span id="error_designation"></span>
+            <label for="Address1">Address1 :</label> <input type="text" name="address1" id="address1"
+                value="<%=user[0].Address_1%>" class="address_check"><span id="error_address1"></span><br>
+            <br>
+            <label for="Phone Number">Phone Number : </label><input type="text" name="contact_no"
+                value="<%=user[0].Phone_No%>" id="contact">&emsp;<span id="contacterror"></span>
+            <label for="Address2">Address2 : </label><input type="text" name="address2" id="address2"
+                value="<%=user[0].Address_2%>" class="address_check"><span id="error_address2"></span><br>
+            <br>
+            <label for="Email">Email :</label> <input type="text" name="email" id="email" value="<%=user[0].Email%>"
+                class="email_check">&emsp;<span id="email_error"></span>
+            <label for="City ">City :</label> <input type="text" name="City" id="city" class="address_check"
+                value="<%=user[0].City%>"><span id="error_City"></span><br>
+            <br>
+            <label for="Relationship Status">Gender : </label><input type="radio" name="gender" value="male"
+                class="radio_check" id="male">Male
+            <input type="radio" name="gender" value="female" class="radio_check" id="female">female &emsp;<span
+                id="error_gender"></span>
+
+            <label for="State">State :</label><select name="state" id="state" <% if(user[0].state) { %> value="
+                <%=user[0].state%>" <% }%> >
+                        <option value="gujarat" selected>Gujarat</option>
+                        <option value="maharashtra">Maharashtra</option>
+            </select><br>
+            <br>
+            <label for="Zip Code">Zip Code</label> <input type="text" name="zipcode" id="zipcode"
+                value="<%=user[0].Zip_code%>">&emsp;<span id="zipcodeerror"></span>
+            <label for="Date of Birth">Date of Birth : </label><input type="text" name="date" placeholder="yyyy-mm-dd"
+                <% if(user[0].DoB) { %> value ="<%=(user[0].DoB.getFullYear()) + '-' + (user[0].DoB.getMonth() +1) + '-'
+                + user[0].DoB.getDate()%>" <%} %> id="birth_date" class="date_check"><span id="error_date"></span>
+        </fieldset>
+
+
+        <!-- education detail -->
+
+        <fieldset>
+            <legend>
+                <h2>Education Detail</h2>
+            </legend>
+            <span onclick="myfun()">
+                Add row
+            </span><br>
+            <div class="container" id="container">
+                <div class="child_container" id="child_container"><br>
+                    <input type="hidden" name="edu_id" id="edu_id" value="<%=user2[0].edu_id%>">
+                    <label for="board_name">Board Name: </label> <select name="education_detail" id="education_detail1">
+                        <option value="SSC">SSC</option>
+                        <option value="HSC">HSC</option>
+                        <option value="bachlor">Bachlor</option>
+                        <option value="master">Master</option>
+                    </select>
+                    <label for="year">Year: </label><input type="text" name="year" id="year1" class="education_year"
+                        value="<%=user2[0].year%>">
+                    <label for="percentage">Percentage: </label><input type="text" name="percentage" id="percentage1"
+                        value="<%=user2[0].percentage%>" class="education_percentage"><br><br>
+
+                        <input type="hidden" name="edu_id" id="edu_id" value="<%=user2[1].edu_id%>">
+                    <label for="board_name">Board Name: </label> <select name="education_detail" id="education_detail2">
+                        <option value="SSC">SSC</option>
+                        <option value="HSC">HSC</option>
+                        <option value="bachlor">Bachlor</option>
+                        <option value="master">Master</option>
+                    </select>
+                    <label for="year">Year: </label><input type="text" name="year" id="year2" class="education_year"
+                        value="<%=user2[1].year%>">
+                    <label for="percentage">Percentage: </label><input type="text" name="percentage" id="percentage2"
+                        value="<%=user2[1].percentage%>" class="education_percentage"><br><br>
+
+                        <input type="hidden" name="edu_id" id="edu_id" value="<%=user2[2].edu_id%>">
+                    <label for="board_name">Board Name: </label> <select name="education_detail" id="education_detail3">
+                        <option value="SSC">SSC</option>
+                        <option value="HSC">HSC</option>
+                        <option value="bachlor">Bachlor</option>
+                        <option value="master">Master</option>
+                    </select>
+                    <label for="year">Year: </label><input type="text" name="year" id="year3" class="education_year"
+                        value="<%=user2[2].year%>">
+                    <label for="percentage">Percentage: </label><input type="text" name="percentage" id="percentage3"
+                        value="<%=user2[2].percentage%>" class="education_percentage">
+                </div>
+            </div>
+            <span id="education_year_error"></span> <br>
+            <span id="education_percentage_error"></span>
+
+        </fieldset>
+
+
+        <!-- work experience -->
+
+        <fieldset>
+            <legend>
+                <h2>Work Experience</h2>
+            </legend>
+            <span onclick="myfun2()">
+                Add row
+            </span><br><br>
+            <div class="work_experience_container" id="work_experience_container">
+                <div class="work_experience_child_container" id="work_experience_child_container">
+                    <label for="Company name ">Company name : </label><input type="text" name="company1"
+                        value="<%=user3[0].company1_Name%>" id="company name" class="company_check">
+                    &emsp;
+                    <label for="Designation">Designation : </label><input type="text" name="designation1"
+                        value="<%=user3[0].company1_Designation%>" id="Designation" class="designation_check">
+                    &emsp;
+                    <label for=" From"> From :</label> <input type="text" name="from1" id="from1" class="datefrom_check"
+                        <% if(user3[0].company1_Joiningdate){%> value="<%=(user3[0].company1_Joiningdate.getFullYear())+ '-' + (user3[0].company1_Joiningdate.getMonth() +1) + '-' +user3[0].company1_Joiningdate.getDate()%>"<% } %> >&emsp;
+                            <label for="To">To: </label> <input type="text" name="to1" id="to1" class="dateto_check" <%
+                                if(user3[0].company1_Leavingdate) { %>value ="<%=(user[0].DoB.getFullYear()) + '-' +(user[0].DoB.getMonth() +1) + '-' + user[0].DoB.getDate()%>" <% } %> ><br>
+                                    <br>
+                                    <label for="Company name ">Company name : </label><input type="text" name="company1"
+                                        value="<%=user3[1].company1_Name%>" id="company name" class="company_check">
+                                    &emsp;
+                                    <label for="Designation">Designation : </label><input type="text"
+                                        name="designation1" value="<%=user3[1].company1_Designation%>" id="Designation"
+                                        class="designation_check">
+                                    &emsp;
+                                    <label for=" From"> From :</label> <input type="text" name="from1" id="from2" <%
+                                        if(user3[1].company1_Joiningdate) { %> value = "<%=(user3[1].company1_Joiningdate.getFullYear()) + '-' +(user3[1].company1_Joiningdate.getMonth() +1) + '-' +user3[1].company1_Joiningdate.getDate()%>" <%} %> class="datefrom_check">&emsp;
+                                            <label for="To">To: </label> <input type="text" name="to1" id="to2" <%
+                                                if(user3[1].company1_Leavingdate) { %> value = "<%=(user3[1].company1_Leavingdate.getFullYear()) + '-' +(user3[1].company1_Leavingdate.getMonth() +1) + '-' +user3[1].company1_Leavingdate.getDate()%>" <%}%>class="dateto_check">
+                </div>
+            </div>
+            <span id="company_error"></span> <span id="designation_error"></span> <br>
+            <span id="joining_error"></span> <span id="leave_error"></span>
+
+        </fieldset>
+
+        <!-- language known -->
+
+        <fieldset>
+            <legend>
+                <h2>Language Known</h2>
+            </legend>
+            <input type="checkbox" name="language[]" value="hindi" class="checkbox_validation" id="hindi"><label
+                for="Hindi">Hindi</label>
+            <input type="checkbox" name="htype[]" value="read" class="hindi_check" id="hindiread" ><label
+                for="read">read</label>
+            <input type="checkbox" name="htype[]" value="write" class="hindi_check" id="hindiwrite"><label
+                for="write">write</label>
+            <input type="checkbox" name="htype[]" value="speak" class="hindi_check" id="hindispeak"><label for=" speak ">
+                speak </label>
+            <span id="hindi_error"></span>
+            <br>
+            <br>
+            <input type="checkbox" name="language[]" value="english" class="checkbox_validation" id="english"><label for="English"
+                >English</label>
+            <input type="checkbox" name="etype[]" value="read" class="english_check" id="englishread" ><label
+                for="read">read</label>
+            <input type="checkbox" name="etype[]" value="write" class="english_check" id="englishwrite"><label
+                for="write">write</label>
+            <input type="checkbox" name="etype[]" value="speak" class="english_check" id="englishspeak" ><label
+                for="speak">speak</label>
+            <span id="english_error"></span>
+            <br>
+            <br>
+            <input type="checkbox" name="language[]" value="gujarati" class="checkbox_validation" id="gujarati"><label
+                for=" Gujarati">
+                Gujarati</label>
+            <input type="checkbox" name="gtype[]" value="read" class="gujarati_check" id="gujaratiread"><label
+                for="read">read</label>
+            <input type="checkbox" name="gtype[]" value="write" class="gujarati_check" id="gujaratiwrite"><label
+                for="write">write</label>
+            <input type="checkbox" name="gtype[]" value="speak" class="gujarati_check" id="gujaratispeak"><label for=" speak">
+                speak</label><span id="gujarati_error"></span><br>
+            <span id="language_error"></span>
+
+        </fieldset>
+
+        <!-- technologies known -->
+
+        <fieldset>
+            <legend>
+                <h2>Technologies you know</h2>
+            </legend>
+            <input type="checkbox" name="type" value="php" class="technology_validation" id="php"><label for="PHP">PHP</label>
+            <input type="radio" name="ptype" value="beginer" class="phptype_validation" id="phpbeginer"><label
+                for="beginer" >beginer</label>
+            <input type="radio" name="ptype" value="mideator" class="phptype_validation"  id="phpmideator"><label
+                for="mideator">mideator</label>
+            <input type="radio" name="ptype" value="expert" class="phptype_validation" id="phpexpert"><label
+                for="expert">expert</label> <span id="phptype_error"></span><br>
+
+            <br>
+            <input type="checkbox" name="type" value="mysql" class="technology_validation" id="mysql"><label
+                for="mysql">mysql</label>
+            <input type="radio" name="mtype" value="beginer" class="mysqltype_validation" id="mysqlbeginer"><label
+                for="beginer">beginer</label>
+            <input type="radio" name="mtype" value="mideator" class="mysqltype_validation" id="mysqlmideator"><label
+                for="mideator">mideator</label>
+            <input type="radio" name="mtype" value="expert" class="mysqltype_validation" id="mysqlexpert"><label
+                for="expert">expert</label> <span id="mysqltype_error"></span><br>
+            <br>
+            <input type="checkbox" name="type" value="larave" class="technology_validation" id="larave"> <label
+                for="larave">larave</label>
+            <input type="radio" name="ltype" value="beginer" class="laravetype_validation" id="laravebeginer"><label
+                for="beginer">beginer</label>
+            <input type="radio" name="ltype" value="mideator" class="laravetype_validation" id="laravemideator"><label
+                for="mideator">mideator</label>
+            <input type="radio" name="ltype" value="expert" class="laravetype_validation" id="laraveexpert"><label
+                for="expert">expert</label> <span id="laravetype_error"></span><br>
+            <br>
+            <input type="checkbox" name="type" value="oracle" class="technology_validation" id="oracle"><label
+                for="oracle">oracle</label>
+            <input type="radio" name="otype" value="beginer" class="oracletype_validation" id="oraclebeginer"><label
+                for="beginer">beginer</label>
+            <input type="radio" name="otype" value="mideator" class="oracletype_validation" id="oraclemideator"><label
+                for="mideator">mideator</label>
+            <input type="radio" name="otype" value="expert" class="oracletype_validation" id="oracleexpert"><label
+                for="expert">expert</label><span id="oracletype_error"></span><br>
+            <span id="technology_error"></span>
+        </fieldset>
+
+        <!-- reference contact -->
+
+        <fieldset>
+            <legend>
+                <h2>Reference Contact</h2>
+            </legend>
+            <span onclick="myfun3()">
+                Add row
+            </span><br><br>
+            <div class="reference_container" id="reference_container">
+                <div class="reference_child_container" id="reference_child_container">
+                    <label for="Name">Name :</label> <input type="text" name="name1" id="name1"
+                        value="<%=user6[0].person_name%>" class="reference_check"><span id="error_name1"></span>&emsp;
+                    <label for="Contact No ">Contact No : </label><input type="text" name="contact1" id="contact1"
+                        value="<%=user6[0].person_contactNo%>" class="reference_contact_check"><span
+                        id="error_contact1"></span>&emsp;
+                    <label for="Relation">Relation : </label><input type="text" name="relation1" id="relation1"
+                        value="<%=user6[0].person_relation%>" class="reference_relation_check"><span
+                        id="error_relation1"></span><br>
+                    <br>
+                </div>
+            </div>
+            <span id="reference_contact_error"></span><br>
+            <span id="reference_relation_error"></span>
+        </fieldset>
+
+        <!-- preferances -->
+
+        <fieldset>
+            <legend>
+                <h2>
+                    Preferances
+                </h2>
+            </legend>
+            <label for="Prefered Location ">Prefered Location</label><input type="text" name="preferedlocation"
+                value="<%=user7[0].Prefered_location%>" id="prefered location" class="basic_check"><span
+                id="error_preferedlocation"></span><br>
+            <br>
+            <label for="Notice peroid ">Notice peroid </label><input type="text" name="noticeperiod" id="notice period"
+                value="<%=user7[0].Notice_period%>" class="address_check"><span id="error_noticeperiod"></span> <br>
+            <br>
+            <label for="Expected CTC">Expected CTC </label><input type="text" name="Expected_CTC"
+                value="<%=user7[0].Expected_CTC%>" id="Expected_CTC"><span id="ctc_error1"></span>
+            &emsp;
+            <label for="Current CTC ">Current CTC </label><input type="text" name="Current_CTC" id="Current_CTC"
+                value="<%=user7[0].Current_CTC%>"> <span id="ctc_error2"></span><br>
+            <br>
+            Department : <select name="dept" id="dept">
+                <option value="design">Design</option>
+                <option value="marketing">Marketing</option>
+            </select>
+        </fieldset>
+        <% if(user[0].Fname){ %> 
+        <input type="submit" value="update">
+        <% } else {%>
+        <input type="submit" value="submit">
+        <% } %>    
+        
+        <script>
+
+        function myfun() {
+            const node = document.getElementById('child_container');
+            console.log(node);
+             const clone = node.cloneNode(true);
+            document.getElementById('container').appendChild(clone);
+        }
+        
+        function myfun2() {
+            const node = document.getElementById('work_experience_child_container');
+            const clone = node.cloneNode(true);
+            document.getElementById('work_experience_container').appendChild(clone);
+        }
+
+
+        function myfun3() {
+            const node = document.getElementById('reference_child_container');
+            const clone = node.cloneNode(true);
+            document.getElementById('reference_container').appendChild(clone);
+        }
+
+
+            function validateform(){
+    let flag = true;
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    var regName = /^[A-z]+$/;
+    var contactno_regex = /^\d{10}$/;
+    const zipcode_regex = /^\d{5}[-\s]?(?:\d{4})?$/gm;
+    var date_regex = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
+    var year_regex = /(?:(?:18|19|20|21)[0-9]{2})/;
+    var percentage_regex = /(^100(\.0{1,2})?$)|(^([1-9]([0-9])?|0)(\.[0-9]{1,2})?$)/;
+    const basic_check = document.getElementsByClassName('basic_check');
+    const address_check = document.getElementsByClassName('address_check');
+    const radio_check = document.getElementsByClassName('radio_check');
+    const email = document.getElementById('email').value;
+    var contact = document.getElementById('contact').value;
+    var zipcode = document.getElementById('zipcode').value;
+    var date_check = document.getElementsByClassName('date_check');
+    var year_check = document.getElementsByClassName('year_check');
+    var percentage_check = document.getElementsByClassName('percentage_check');
+    var zipcodeerror = document.getElementById('zipcodeerror');
+    var technology_validation = document.getElementsByClassName('technology_validation');
+    var phptype_validation = document.getElementsByClassName('phptype_validation');
+    var mysqltype_validation = document.getElementsByClassName('mysqltype_validation');
+    var laravetype_validation = document.getElementsByClassName('laravetype_validation');
+    var oracletype_validation = document.getElementsByClassName('oracletype_validation');
+    var checkbox_validation = document.getElementsByClassName('checkbox_validation');
+    var hindi_check = document.getElementsByClassName('hindi_check');
+    var gujarati_check = document.getElementsByClassName('gujarati_check');
+    var english_check = document.getElementsByClassName('english_check');
+    var education_year = document.getElementsByClassName('education_year');
+    var education_percentage = document.getElementsByClassName('education_percentage');
+    var company_check = document.getElementsByClassName('company_check');
+    var designation_check = document.getElementsByClassName('designation_check');
+    var datefrom_check = document.getElementsByClassName('datefrom_check');
+    var dateto_check = document.getElementsByClassName('dateto_check');
+    var reference_check = document.getElementsByClassName('reference_check');
+    var reference_contact_check = document.getElementsByClassName('reference_contact_check');
+    var reference_relation_check = document.getElementsByClassName('reference_relation_check');
+    var Expected_CTC = document.getElementById('Expected_CTC').value;
+
+    //basic_check
+    for (let i = 0; i < basic_check.length; i++) {
+        let name = basic_check[i].value;
+        if (name === "") {
+            document.getElementById('error_' + basic_check[i].name).innerHTML = "please enter " + basic_check[i].name;
+            flag = false;
+        }
+        else if (name.length > 20) {
+            document.getElementById('error_' + basic_check[i].name).innerHTML = "please enter valid " + basic_check[i].name;
+            flag = false;
+        }
+        else if (!regName.test(name)) {
+            document.getElementById('error_' + basic_check[i].name).innerHTML = "please enter valid " + basic_check[i].name;
+            flag = false;
+        }
+        else {
+            document.getElementById('error_' + basic_check[i].name).innerHTML = "";
+        }
+    }
+
+    //address_validation
+    for (let i = 0; i < address_check.length; i++) {
+
+        let name = address_check[i].value;
+        if (name === "") {
+            document.getElementById('error_' + address_check[i].name).innerHTML = "please enter " + address_check[i].name;
+            flag = false;
+        }
+        else if (name.length > 20) {
+            document.getElementById('error_' + address_check[i].name).innerHTML = "please enter valid " + address_check[i].name;
+            flag = false;
+        }
+        else {
+            document.getElementById('error_' + address_check[i].name).innerHTML = "";
+        }
+    }
+
+
+    //email validation
+    if (email === "") {
+        document.getElementById('email_error').innerHTML = "please enter email"
+        flag = false;
+    }
+    else if (!emailRegex.test(email)) {
+        document.getElementById('email_error').innerHTML = "please enter valid email"
+        flag = false;
+    }
+    else {
+        document.getElementById('email_error').innerHTML = ""
+    }
+
+    //contact_validation
+    if (contact == "") {
+        document.getElementById('contacterror').innerHTML = "please enter your contact no";
+        flag = false;
+    }
+    else if (!contactno_regex.test(contact)) {
+        document.getElementById("contacterror").innerHTML = "please enter valid contact no";
+        flag = false;
+    }
+    else {
+        document.getElementById("contacterror").innerHTML = " "
+    }
+
+    //zipcode validation
+    if (zipcode.length === 0) {
+        zipcodeerror.innerHTML = "please enter zipcode";
+        flag = false;
+    }
+    else {
+        zipcodeerror.innerHTML = "";
+    }
+
+    //radio_validation
+    for (let i = 0; i < radio_check.length; i++) {
+        let name = radio_check[i].checked;
+        if (name) {
+            document.getElementById('error_' + radio_check[i].name).innerHTML = "";
+            flag = true;
+            break;
+        }
+        else {
+            // console.log("vfnhdv")
+            flag = false;
+            document.getElementById('error_' + radio_check[i].name).innerHTML = "please select " + radio_check[i].name;
+        }
+    }
+
+    //date validation
+    for (let i = 0; i < date_check.length; i++) {
+        let name = date_check[i].value;
+        if (name === "") {
+            document.getElementById('error_' + date_check[i].name).innerHTML = "please enter " + date_check[i].name;
+            flag = false;
+        }
+        else if (!date_regex.test(name)) {
+            document.getElementById('error_' + date_check[i].name).innerHTML = "please enter valid " + date_check[i].name;
+            flag = false;
+        }
+        else {
+            document.getElementById('error_' + date_check[i].name).innerHTML = "";
+        }
+    }
+
+    //year validation
+    for (let i = 0; i < year_check.length; i++) {
+        let name = year_check[i].value;
+        if (name === "") {
+            document.getElementById('error_' + year_check[i].name).innerHTML = "please enter " + year_check[i].name;
+            flag = false;
+        }
+        else if (!year_regex.test(name)) {
+            document.getElementById('error_' + year_check[i].name).innerHTML = "please enter valid " + year_check[i].name;
+            flag = false;
+        }
+        else {
+            document.getElementById('error_' + year_check[i].name).innerHTML = "";
+        }
+    }
+
+    //percentage validation
+    for (let i = 0; i < percentage_check.length; i++) {
+        console.log("helloooo")
+        let name = percentage_check[i].value;
+        if (name === "") {
+            document.getElementById('error_' + percentage_check[i].name).innerHTML = "please enter " + percentage_check[i].name;
+            flag = false;
+        }
+        else if (!percentage_regex.test(name)) {
+            document.getElementById('error_' + percentage_check[i].name).innerHTML = "please enter valid " + percentage_check[i].name;
+            flag = false;
+        }
+        else {
+            document.getElementById('error_' + percentage_check[i].name).innerHTML = "";
+        }
+    }
+
+    //education check 
+    for (let i = 0; i < education_year.length; i++) {
+        console.log(education_year)
+        let name = education_year[i].value;
+        console.log("nameee", name)
+        if (name === "") {
+            document.getElementById('education_year_error').innerHTML = "please enter year";
+            flag = false;
+        }
+        else if (!year_regex.test(name)) {
+            document.getElementById('education_year_error').innerHTML = "please enter valid year";
+            flag = false;
+        }
+        else {
+            document.getElementById('education_year_error').innerHTML = "";
+        }
+    }
+
+    for (let i = 0; i < education_percentage.length; i++) {
+        let name = education_percentage[i].value;
+        if (name === "") {
+            document.getElementById('education_percentage_error').innerHTML = "please enter percentage";
+            flag = false;
+        }
+        else if (!percentage_regex.test(name)) {
+            document.getElementById('education_percentage_error').innerHTML = "please enter valid percentage";
+            flag = false;
+        }
+        else {
+            document.getElementById('education_percentage_error').innerHTML = "";
+        }
+    }
+
+    //language validation
+    for (let i = 0; i < checkbox_validation.length; i++) {
+        let name = checkbox_validation[i].checked;
+        if (!name) {
+            flag = false;
+            document.getElementById('language_error').innerHTML = "please select any language"
+        }
+        else {
+            flag = true;
+            document.getElementById('language_error').innerHTML = "";
+            if (checkbox_validation[0].checked) {
+                for (let i = 0; i < hindi_check.length; i++) {
+                    if (hindi_check[i].checked) {
+                        flag = true;
+                        document.getElementById('hindi_error').innerHTML = "";
+                        break;
+                    }
+                    else {
+                        document.getElementById('hindi_error').innerHTML = "please select hindi type";
+                        flag = false;
+                    }
+                }
+            }
+
+            if (checkbox_validation[1].checked) {
+                for (let i = 0; i < english_check.length; i++) {
+                    if (english_check[i].checked) {
+                        flag = true;
+                        document.getElementById('english_error').innerHTML = "";
+                        break;
+                    }
+                    else {
+                        document.getElementById('english_error').innerHTML = "please select english type";
+                        flag = false;
+                    }
+                }
+            }
+            if (checkbox_validation[2].checked) {
+                for (let i = 0; i < gujarati_check.length; i++) {
+                    if (gujarati_check[i].checked) {
+                        flag = true;
+                        document.getElementById('gujarati_error').innerHTML = "";
+                        break;
+                    }
+                    else {
+                        document.getElementById('gujarati_error').innerHTML = "please select gujarati type";
+                        flag = false;
+                    }
+                }
+            }
+            break;
+        }
+    }
+
+    //technology validation
+    for (let i = 0; i < technology_validation.length; i++) {
+        let name = technology_validation[i].checked;
+        if (!name) {
+            flag = false;
+            document.getElementById('technology_error').innerHTML = "please select any technology";
+        }
+        else {
+            flag = true;
+            document.getElementById('technology_error').innerHTML = "";
+            if (technology_validation[0].checked) {
+                for (let i = 0; i < phptype_validation.length; i++) {
+                    if (phptype_validation[i].checked) {
+                        flag = true;
+                        document.getElementById('phptype_error').innerHTML = "";
+                        break;
+                    }
+                    else {
+                        document.getElementById('phptype_error').innerHTML = "please select php type";
+                        flag = false;
+                    }
+                }
+            }
+
+            if (technology_validation[1].checked) {
+                for (let i = 0; i < mysqltype_validation.length; i++) {
+                    if (mysqltype_validation[i].checked) {
+                        flag = true;
+                        document.getElementById('mysqltype_error').innerHTML = "";
+                        break;
+                    }
+                    else {
+                        document.getElementById('mysqltype_error').innerHTML = "please select mysql type";
+                        flag = false;
+                    }
+                }
+            }
+
+            if (technology_validation[2].checked) {
+                for (let i = 0; i < laravetype_validation.length; i++) {
+                    if (laravetype_validation[i].checked) {
+                        flag = true;
+                        document.getElementById('laravetype_error').innerHTML = "";
+                        break;
+                    }
+                    else {
+                        document.getElementById('laravetype_error').innerHTML = "please select larave type";
+                        flag = false;
+                    }
+                }
+            }
+
+            if (technology_validation[3].checked) {
+                for (let i = 0; i < oracletype_validation.length; i++) {
+                    if (oracletype_validation[i].checked) {
+                        flag = true;
+                        document.getElementById('oracletype_error').innerHTML = "";
+                        break;
+                    }
+                    else {
+                        document.getElementById('oracletype_error').innerHTML = "please select oracle type";
+                        flag = false;
+                    }
+                }
+            }
+
+            break;
+        }
+    }
+
+
+    // work experience validation
+
+    for (let i = 0; i < company_check.length; i++) {
+        let name = company_check[i].value;
+        if (name !== "") {
+            for (let i = 0; i < designation_check.length; i++) {
+                let designation = designation_check[i].value;
+                if (designation == "") {
+                    document.getElementById('designation_error').innerHTML = "please enter designation";
+                    flag = false;
+                }
+                else if (!regName.test(designation)) {
+                    document.getElementById('designation_error').innerHTML = "please enter valid designation";
+                    flag = false;
+                }
+                else {
+                    document.getElementById('designation_error').innerHTML = "";
+                }
+            }
+
+            for (let i = 0; i < datefrom_check.length; i++) {
+                let datefrom = datefrom_check[i].value;
+                if (datefrom == "") {
+                    document.getElementById('joining_error').innerHTML = "please enter joining date";
+                    flag = false;
+                }
+                else if (!date_regex.test(datefrom)) {
+                    document.getElementById('joining_error').innerHTML = "please enter valid joining date";
+                    flag = false;
+                }
+                else {
+                    document.getElementById('joining_error').innerHTML = "";
+                }
+            }
+
+            for (let i = 0; i < dateto_check.length; i++) {
+
+                let dateto = dateto_check[i].value;
+                if (dateto == "") {
+                    document.getElementById('leave_error').innerHTML = "please enter leave date";
+                    flag = false;
+                }
+                else if (!date_regex.test(dateto)) {
+                    document.getElementById('leave_error').innerHTML = "please enter valid leave date";
+                    flag = false;
+                }
+                else {
+                    document.getElementById('leave_error').innerHTML = "";
+                }
+            }
+        }
+        else {
+            document.getElementById('designation_error').innerHTML = "";
+            document.getElementById('joining_error').innerHTML = "";
+            document.getElementById('leave_error').innerHTML = "";
+        }
+    }
+
+    //reference contact validation
+    for (let i = 0; i < reference_check.length; i++) {
+        let name = reference_check[i].value;
+        if (name !== "") {
+            for (let i = 0; i < reference_contact_check.length; i++) {
+                let contact = reference_contact_check[i].value;
+                if (contact == "") {
+                    document.getElementById('reference_contact_error').innerHTML = "please enter contact"
+                    flag = false;
+                }
+                else if (!contactno_regex.test(contact)) {
+                    document.getElementById('reference_contact_error').innerHTML = "please enter valid  contact"
+                    flag = false;
+                }
+                else {
+                    document.getElementById('reference_contact_error').innerHTML = ""
+                }
+            }
+
+            for (let i = 0; i < reference_relation_check.length; i++) {
+                let reference = reference_relation_check[i].value;
+                if (reference == "") {
+                    document.getElementById('reference_relation_error').innerHTML = "please enter reference name";
+                    flag = false;
+                }
+                else if (!regName.test(reference)) {
+                    document.getElementById('reference_relation_error').innerHTML = "please enter valid reference name";
+                    flag = false;
+                }
+                else {
+                    document.getElementById('reference_relation_error').innerHTML = "";
+                }
+            }
+        }
+        else {
+            // document.getElementById('error_' + reference_check[i].name).innerHTML = "";
+            document.getElementById('reference_contact_error').innerHTML = "";
+            document.getElementById('reference_relation_error').innerHTML = "";
+        }
+    }
+
+    // preferences validation
+    if (Expected_CTC === "") {
+        console.log("ctc", Expected_CTC)
+        document.getElementById('ctc_error1').innerHTML = "please enter expected ctc";
+        flag = false;
+    }
+    else {
+        document.getElementById('ctc_error1').innerHTML = "";
+    }
+
+    return flag;
+
+}
+
+
+            if (`<%=user[0].State%>`) {
+                document.getElementById('state').value = "<%=user[0].State%>";
+            }   
+            if (`<%=user7[0].Department %>`) {
+                document.getElementById('dept').value = "<%=user7[0].Department %>";
+            }
+            if (`<%=user2[0].board_name%>`) {
+                document.getElementById('education_detail1').value = "<%=user2[0].board_name%>";
+            }
+            if (`<%=user2[1].board_name%>`) {
+                document.getElementById('education_detail2').value = "<%=user2[1].board_name%>"
+            }
+            if (`<%=user2[2].board_name%>`) {
+                document.getElementById('education_detail3').value = "<%=user2[2].board_name%>"
+            }
+            if (`<%=user[0].Gender%>` == "male") {
+                document.getElementById('male').checked = true;
+            }
+            else {
+                document.getElementById('female').checked = true;
+            }
+           
+            let languages = JSON.parse(`<%-JSON.stringify(user4)%>`);
+            console.log(languages);
+            for(let i =0; i<languages.length ; i++){
+                if(languages[i].language){
+                    console.log(languages[i].language)
+                    document.getElementById(`${languages[i].language}`).checked = true;
+                    if(languages[i].L_read == "yes"){
+                        document.getElementById(`${languages[i].language}read`).checked = true;
+                    }
+                    if(languages[i].L_write == "yes"){
+                        document.getElementById(`${languages[i].language}write`).checked = true;
+                    }
+                    if(languages[i].L_speak == "yes"){
+                        document.getElementById(`${languages[i].language}speak`).checked = true;
+                    }
+                }
+            }
+
+            let technologies = JSON.parse(`<%-JSON.stringify(user5)%>`);
+            console.log(technologies);
+            for(let i =0 ; i<technologies.length ;i++){
+                if(technologies[i].tech_name){
+                    document.getElementById(`${technologies[i].tech_name}`).checked = true;
+                    if(technologies[i].tech_level == "beginer"){
+                        document.getElementById(`${technologies[i].tech_name}beginer`).checked = true;
+                    }
+                    if(technologies[i].tech_level == "mideator"){
+                        document.getElementById(`${technologies[i].tech_name}mideator`).checked = true;
+                    }
+                    if(technologies[i].tech_level == "expert"){
+                        document.getElementById(`${technologies[i].tech_name}expert`).checked = true;
+                    }
+                }
+            }
+            
+
+        </script>
+    </form>
+</body>
+
+</html>
