@@ -1,5 +1,6 @@
 
 var currentTab = 0;
+let userid ;
 showTab(currentTab);
 var nextbutton = document.getElementById('nextbutton');
 function showTab(n) {
@@ -12,33 +13,33 @@ function showTab(n) {
         document.getElementById('prevbutton').style.display = "inline";
     }
 
-    if(n == (tab.length - 1)) {
-      
-            document.getElementById('nextbutton').innerHTML = "Submit";
-        
+    if (n == (tab.length - 1)) {
+
+        document.getElementById('nextbutton').innerHTML = "Submit";
+
     }
     else {
         document.getElementById('nextbutton').innerHTML = "Next";
     }
 }
 
-function fun(n){
-    if(currentTab == 0){
+function fun(n) {
+    if (currentTab == 0) {
         updatebasic_detail();
     }
-    if(currentTab == 1){
+    if (currentTab == 1) {
         updateeducation_detail();
     }
-    if(currentTab == 3){
+    if (currentTab == 3) {
         update_languages();
     }
-    if(currentTab == 4){
+    if (currentTab == 4) {
         updatetechnology();
     }
-    if(currentTab == 5){
+    if (currentTab == 5) {
         update_reference();
     }
-    if(currentTab == 6){
+    if (currentTab == 6) {
         update_preferences();
         console.log("preferencesss")
     }
@@ -568,7 +569,7 @@ function preferences_validation() {
         flag = false;
     }
     else if (!regName.test(preferedlocation)) {
-        document.getElementById('location_error').innerHTML = "please enter valid location" ;
+        document.getElementById('location_error').innerHTML = "please enter valid location";
         flag = false;
     }
     else {
@@ -594,7 +595,7 @@ async function fetchbasic_detail() {
         if (gender[i].checked) {
             finalgender.push(gender[i].value);
         }
-    }   
+    }
     let basicdetails = {};
     basicdetails.fname = document.getElementById('fname').value;
     basicdetails.lname = document.getElementById('lname').value;
@@ -616,7 +617,11 @@ async function fetchbasic_detail() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(basicdetails),
     })
-        .then(response => response.json)
+        .then(async(response) => {
+            let data = await response.json()
+            userid = data.id;
+        })
+
 }
 
 async function updatebasic_detail() {
@@ -664,7 +669,7 @@ async function fetcheducation_detail() {
     educationdetails.percentage2 = document.getElementById('percentage2').value;
     educationdetails.percentage3 = document.getElementById('percentage3').value;
 
-    let url = `http://localhost:8004/task4/education_detail`;
+    let url = `http://localhost:8004/task12/educationaldetail/${userid}`;
     const response = await fetch(url, {
         method: 'POST',
         mode: 'cors',
@@ -674,15 +679,15 @@ async function fetcheducation_detail() {
         .then(response => response.json);
 }
 
-async function updateeducation_detail(){
+async function updateeducation_detail() {
     let educationdetails = {};
     let edu_id = [];
     educationdetails.id = document.getElementById('educationid').value;
     let edu_id1 = document.getElementById('edu_id1').value;
     let edu_id2 = document.getElementById('edu_id2').value;
     let edu_id3 = document.getElementById('edu_id3').value;
-    edu_id.push(edu_id1 , edu_id2 , edu_id3);
-    educationdetails.edu_id =edu_id; 
+    edu_id.push(edu_id1, edu_id2, edu_id3);
+    educationdetails.edu_id = edu_id;
     educationdetails.education_detail1 = document.getElementById('education_detail1').value;
     educationdetails.education_detail2 = document.getElementById('education_detail2').value;
     educationdetails.education_detail3 = document.getElementById('education_detail3').value;
@@ -692,8 +697,8 @@ async function updateeducation_detail(){
     educationdetails.percentage1 = document.getElementById('percentage1').value;
     educationdetails.percentage2 = document.getElementById('percentage2').value;
     educationdetails.percentage3 = document.getElementById('percentage3').value;
-    console.log("educationdetails" , educationdetails)
-    let url = `http://localhost:8004/task4/updateeducationdetail/:id`;
+    console.log("educationdetails", educationdetails)
+    let url = `http://localhost:8004/task12/updateeducationdetail/:id`;
     const response = await fetch(url, {
         method: 'POST',
         mode: 'cors',
@@ -714,7 +719,7 @@ async function fetchwork_experience() {
     workexperience.to1 = document.getElementById('to1').value;
     workexperience.to2 = document.getElementById('to2').value;
 
-    let url = `http://localhost:8004/task4/work_experience`;
+    let url = `http://localhost:8004/task12/work_experience/${userid}`;
     const response = await fetch(url, {
         method: 'POST',
         mode: 'cors',
@@ -763,7 +768,7 @@ async function fetch_languages() {
     languages.etype = finaletype;
     languages.gtype = finalgtype;
 
-    let url = `http://localhost:8004/task4/languages`;
+    let url = `http://localhost:8004/task12/languages/${userid}`;
     const response = await fetch(url, {
         method: 'POST',
         mode: 'cors',
@@ -813,7 +818,7 @@ async function update_languages() {
     languages.etype = finaletype;
     languages.gtype = finalgtype;
 
-    let url = `http://localhost:8004/task4/updatelanguages/:id`;
+    let url = `http://localhost:8004/task12/updatelanguages/:id`;
     const response = await fetch(url, {
         method: 'POST',
         mode: 'cors',
@@ -869,7 +874,7 @@ async function technology() {
     technologies.ltype = finalltype;
     technologies.mtype = finalmtype;
     technologies.otype = finalotype;
-    let url = `http://localhost:8004/task4/technologies`;
+    let url = `http://localhost:8004/task12/technologies/${userid}`;
     const response = await fetch(url, {
         method: 'POST',
         mode: 'cors',
@@ -925,7 +930,7 @@ async function updatetechnology() {
     technologies.ltype = finalltype;
     technologies.mtype = finalmtype;
     technologies.otype = finalotype;
-    let url = `http://localhost:8004/task4/technologiesupdate/:id`;
+    let url = `http://localhost:8004/task12/technologiesupdate/:id`;
     const response = await fetch(url, {
         method: 'POST',
         mode: 'cors',
@@ -942,7 +947,7 @@ async function fetch_reference() {
     reference.reference_contact = document.getElementById('reference_contact').value;
     reference.reference_relation = document.getElementById('reference_relation').value;
 
-    let url = `http://localhost:8004/task4/reference`;
+    let url = `http://localhost:8004/task12/reference/${userid}`;
     const response = await fetch(url, {
         method: 'POST',
         mode: 'cors',
@@ -959,7 +964,7 @@ async function update_reference() {
     reference.reference_contact = document.getElementById('reference_contact').value;
     reference.reference_relation = document.getElementById('reference_relation').value;
 
-    let url = `http://localhost:8004/task4/referencesupdate/:id`;
+    let url = `http://localhost:8004/task12/referencesupdate/:id`;
     const response = await fetch(url, {
         method: 'POST',
         mode: 'cors',
@@ -976,7 +981,7 @@ async function fetch_preferences() {
     preferences.Expected_CTC = document.getElementById('Expected_CTC').value;
     preferences.Current_CTC = document.getElementById('Current_CTC').value;
     preferences.dept = document.getElementById('dept').value;
-    let url = `http://localhost:8004/task4/preferences`;
+    let url = `http://localhost:8004/task12/preferences/${userid}`;
     const response = await fetch(url, {
         method: 'POST',
         mode: 'cors',
@@ -994,7 +999,7 @@ async function update_preferences() {
     preferences.Expected_CTC = document.getElementById('Expected_CTC').value;
     preferences.Current_CTC = document.getElementById('Current_CTC').value;
     preferences.dept = document.getElementById('dept').value;
-    let url = `http://localhost:8004/task4/preferencesupdate:id`;
+    let url = `http://localhost:8004/task12/preferencesupdate:id`;
     const response = await fetch(url, {
         method: 'POST',
         mode: 'cors',

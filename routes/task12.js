@@ -7,12 +7,16 @@ const { route } = require('./task12');
 
 routes.get('/form', controller.form);
 routes.post('/basicdetail', controller.basicdetail);
-routes.post('/educationaldetail', controller.educationdetail);
-routes.post('/work_experience', controller.workexperience);
-routes.post('/languages', controller.languages);
-routes.post('/technologies', controller.technologies);
-routes.post('/reference', controller.reference);
-routes.post('/preferences', controller.preferances);
+routes.post('/educationaldetail/:userid', controller.educationdetail);
+routes.post('/work_experience/:userid', controller.workexperience);
+routes.post('/languages/:userid', controller.languages);
+routes.post('/technologies/:userid', controller.technologies);
+routes.post('/reference/:userid', controller.reference);
+routes.post('/preferences/:userid', controller.preferances);
+routes.get('/form/:id', controller.getformdata);
+routes.post('/insertform', controller.insertform);
+
+
 
 
 

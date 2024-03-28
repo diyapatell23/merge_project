@@ -36,9 +36,9 @@
 <body>
     <% if(user[0].Fname){%>
         <p><%=user[0].Fname%></p>
-        <form action="/updateform" method="post" name="myform" id="form">
+        <form action="/task12/updateform" method="post" name="myform" id="form">
             <% } else{ %>
-                <form action="/insertform" method="post" name="myform" id="form">
+                <form action="/task12/insertform" method="post" name="myform" id="form">
                     <% } %>
                         <h1>Job Application Form</h1>
                         <div class="tab">

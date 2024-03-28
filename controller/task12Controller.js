@@ -25,23 +25,30 @@ const basicdetail = (req,res)=>{
     console.log(fname);
     const query = `INSERT INTO basic_detail( Fname, Lname, Designation,Email, Phone_No,Address_1, Address_2,State, City,Gender,Zip_code,DoB) VALUES("${fname}","${lname}", "${designation}","${email}", "${contact}","${address1}","${address2}","${state}","${city}","${gender}", "${zipcode}", "${date}")`;
     connection.query(query, function (err, data1) {
+        let id;
         if (err) {
             console.log(err);
         }
         else {
             console.log(data1);
             console.log("iddddd", data1.insertId);
-            let id = data1.insertId;
-            // call(id);
-            return callback(null,result.insertId);
+             id = data1.insertId;
         }
+        res.json({
+            id:id,
+            message:"data added successfully"});
     })
-    res.send("data added successfully");
+    
 }
- function call(id){
+
+
+    
     const educationdetail = (req,res)=>{
+        console.log("djchdjcndc")
+        let id = req.params.userid;
+        console.log(id)
         let data2 = req.body;
-        console.log(data2);
+        console.log(req.body);
         let education_detail1 = req.body.education_detail1;
         let education_detail2 = req.body.education_detail2;
         let education_detail3 = req.body.education_detail3;
@@ -72,6 +79,8 @@ const basicdetail = (req,res)=>{
     }
 
     const workexperience = (req,res)=>{
+        let id = req.params.userid;
+        console.log(id)
         let data3 = req.body;
         console.log(data3);
         let company1 = req.body.company1;
@@ -104,6 +113,8 @@ const basicdetail = (req,res)=>{
     }
 
     const languages = (req,res)=>{
+        let id = req.params.userid;
+        console.log(id)
         let data4 = req.body;
         console.log(data4);
         let language = req.body.language;
@@ -190,6 +201,8 @@ const basicdetail = (req,res)=>{
     }
 
     const technologies = (req,res)=>{
+        let id = req.params.userid;
+        console.log(id)
         let data5 = req.body;
         console.log(data5);
         let ptype = req.body.ptype;
@@ -247,6 +260,8 @@ const basicdetail = (req,res)=>{
     }
 
     const reference = (req,res)=>{
+        let id = req.params.userid;
+        console.log(id)
         var data6 = req.body;
         console.log(data6);
         let reference_name = req.body.reference_name;
@@ -264,6 +279,8 @@ const basicdetail = (req,res)=>{
     }
 
     const preferances = (req,res)=>{
+        let id = req.params.userid;
+        console.log(id)
         let data7 = req.body;
         console.log(data7);
         let preferedLocation = req.body.preferedlocation;
@@ -284,5 +301,76 @@ const basicdetail = (req,res)=>{
         res.send("data added succesfully");
     }
 
+    const insertform = (req,res)=>{
+        res.send("data inserted successfully");
+    }
+
+
+
+const getformdata = (req,res)=>{
+    console.log('inside');
+    var userId = req.params.id;
+    console.log("idddddddddddd", userId)
+    var query = `SELECT * FROM basic_detail WHERE Eid="${userId}"`;
+    connection.query(query, function (err, result) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log("reuslt", result);
+
+        }
+        connection.query(`SELECT * FROM educational_detail WHERE id="${userId}"`, function (err, result2) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                console.log("result2", result2);
+
+            }
+            connection.query(`SELECT * FROM work_experience WHERE id = "${userId}"`, function (err, result3) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    console.log("result3", result3);
+                }
+                connection.query(`SELECT * FROM languages WHERE id = "${userId}"`, function (err, result4) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        console.log("result4", result4);
+                    }
+                    connection.query(`SELECT * FROM technologies_known WHERE id= "${userId}"`, function (err, result5) {
+                        if (err) {
+                            console.log(err);
+                        }
+                        else {
+                            console.log("result5", result5);
+                        }
+                        connection.query(`SELECT * FROM reference_contact WHERE id="${userId}"`, function (err, result6) {
+                            if (err) {
+                                console.log(err);
+                            }
+                            else {
+                                console.log("result6", result6);
+                            }
+                            connection.query(`SELECT * FROM preferences WHERE id="${userId}"`, function (err, result7) {
+                                if (err) {
+                                    console.log(err);
+                                }
+                                else {
+                                    console.log("result7", result7);
+                                    return res.render('./task12/form', { user: result, user2: result2, user3: result3, user4: result4, user5: result5, user6: result6, user7: result7, id: userId });
+                                }
+                            })
+                        })
+                    })
+                })
+            })
+        })
+    })
 }
-module.exports = {form, basicdetail, educationdetail, workexperience, technologies , reference, preferances, languages};
+
+module.exports = {form, basicdetail, educationdetail, workexperience, technologies , reference, preferances, languages, getformdata, insertform};
