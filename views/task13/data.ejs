@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Diya Patel(24DEV069)</h1>
+    <p>(Search languages, technologies, gender, location, department, Relationship)</p>
+    <form action="/task13/data" method="post" style="margin-bottom: 50px;">
+        <input type="text" name="name" id="name" placeholder="Type here">
+        <button>Go</button>
+    </form>
+
+    <% if(user!==false) { %>
+        <% if(user[0].select_type=="checkbox" ) { %>
+            <% for(let i=0 ; i<user.length; i++) { %>
+                <input type="checkbox" name=<%=user[i].option_value%> value= <%=user[i].option_value%> ><labelfor=<%=user[i].option_value%>><%=user[i].option_value%></label>
+                    <input type="checkbox" name="read" value="read"><label for="read">read</label>
+                    <input type="checkbox" name="write" value="write"><label for="write">write</label>
+                    <input type="checkbox" name="speak" value="speak"><label for=" speak "> speak </label><br>
+            <% } %>
+        <% } else if(user[0].select_type=="checkbox_radio") {%>
+            <% for(let i=0 ; i<user.length; i++) { %>
+                <input type="checkbox" name=<%=user[i].option_value%> value= <%=user[i].option_value%> ><labelfor=<%=user[i].option_value%>><%=user[i].option_value%></label>
+                    <input type="radio" name="type" value="beginer"><label for="beginer">beginer</label>
+                    <input type="radio" name="type" value="mideator"><label for="mideator">mideator</label>
+                    <input type="radio" name="type" value="expert"><label for=" expert"> expert </label><br>
+            <% } %>
+        <%} else if(user[0].select_type=="radio") {%>
+            <% for(let i=0 ; i<user.length; i++) { %>
+                <input type="radio" name=<%=user[i].Select_name%> value= <%=user[i].option_value[i]%> ><labelfor=<%=user[i].option_value%>><%=user[i].option_value%></label>
+            <% } %>
+        <% } else if(user[0].select_type =="drop-down"){ %> 
+            <label for=<%=user[0].Select_name%>> <%=user[0].Select_name%></label>
+                    <select name=<%=user[0].Select_name%> id=<%=user[0].Select_name%>>
+                    <% for(let i=0 ; i<user.length; i++) { %>
+                    <option value=<%=user[i].option_value%>> <%=user[i].option_value%></option>
+                    <% } %>
+                </select>
+        <% } %>
+    <% }  %> 
+
+
+</body>
+
+</html>

@@ -11,10 +11,13 @@ const task8routes = require('./routes/task8');
 const task9routes = require('./routes/task9');
 const task10routes = require('./routes/task10');
 const task11routes = require('./routes/task11');
+const task12routes = require('./routes/task12');
+const task13routes= require('./routes/task13');
 
 const app = express();
-const port = 8001;
-
+const port = 8004;
+app.use(express.json());
+app.use(express.static(__dirname + "/views"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({extended:true}));
 
@@ -30,7 +33,8 @@ app.use('/task8',task8routes);
 app.use('/task9',task9routes);
 app.use('/task10', task10routes);
 app.use('/task11', task11routes);
-
+app.use('/task12',task12routes);
+app.use('/task13', task13routes);
 
 app.listen(port, ()=>{
     console.log("server is listening on port" + port);
