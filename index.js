@@ -19,7 +19,7 @@ app.use('/', task2routes);
 app.use('/',task3routes);
 app.use('/', task4routes);
 app.use('/', task5routes);
-app.use('/', task6routes);
+app.use('/task6', task6routes);
 
 app.listen(port, ()=>{
     console.log("server is listening on port" + port);

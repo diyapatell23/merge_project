@@ -1,4 +1,3 @@
-const { query } = require('express');
 const connection = require('../config/config');
 
 const result = (req, res) => {
@@ -40,7 +39,7 @@ const result = (req, res) => {
                             console.log(err);
                         }
 
-                        res.render('./task6/student_result.ejs', { user1: result1, user2: result2, user3: result3, user: results, fields: fields, pageno: page })
+                        res.render('./task6/student_result', { user1: result1, user2: result2, user3: result3, user: results, fields: fields, pageno: page })
                     })
                 })
             });
@@ -53,6 +52,7 @@ const result = (req, res) => {
 
 const searchbyid = (req, res) => {
     try {
+        console.log("searchbyid", id);
         id = req.query.id;
         console.log(id);
         if (id !== "") {
@@ -74,7 +74,7 @@ const searchbyid = (req, res) => {
                                 console.log(err);
                             }
 
-                            res.render('./task6/student_result.ejs', { user1: result1, user2: result2, user3: result3, user: results, fields: fields, pageno: false })
+                            res.render('./task6/student_result', { user1: result1, user2: result2, user3: result3, user: results, fields: fields, pageno: false })
                         })
                     })
                 });
@@ -114,7 +114,7 @@ const searchbyname = (req, res) => {
                                 console.log(err);
                             }
 
-                            res.render('./task6/student_result.ejs', { user1: result1, user2: result2, user3: result3, user: results, fields: fields, pageno: false })
+                            res.render('./task6/student_result', { user1: result1, user2: result2, user3: result3, user: results, fields: fields, pageno: false })
                         })
                     })
                 });
@@ -140,7 +140,7 @@ const searchbyname = (req, res) => {
                                 console.log(err);
                             }
 
-                            res.render('./task6/student_result.ejs', { user1: result1, user2: result2, user3: result3, user: results, fields: fields, pageno: false })
+                            res.render('./task6/student_result', { user1: result1, user2: result2, user3: result3, user: results, fields: fields, pageno: false })
                         })
                     })
                 });

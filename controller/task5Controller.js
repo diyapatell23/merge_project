@@ -1,6 +1,7 @@
 const connection = require('../config/config');
 
 const monthfilter = (req,res)=>{
+    console.log("insideee")
     var totalpage = 2;
     var page = Number(req.params.page);
     var totalrecords = 10;

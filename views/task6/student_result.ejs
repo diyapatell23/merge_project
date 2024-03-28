@@ -39,7 +39,7 @@
 
     <div class="filter" >
         <input type="text" name="sid" id="sid" placeholder="Enter Student Id" tabindex="0">
-        <button onclick="myfun()" >Go</button>
+        <button onclick="searchbyid()">Go</button>
         <p onclick="myfun2()">Show More</p><br>
     </div>
 
@@ -148,10 +148,11 @@
    <% }%>
 
     <script>
-        function myfun(){
+        function searchbyid(){
+            console.log("hellooo");
             let id = document.getElementById('sid').value;
-            console.log(id);
-            window.location.href = `/search?id=${id}`;
+            console.log("idddd",id);
+            window.location.href = `/task6/search?id=${id}`;
         }
 
         function myfun2(){
