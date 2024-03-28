@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Diya Patel(24DEV069)</h2>
+    <table border="1">
+        <thead>
+        <tr>
+            <td>PostId</td>
+            <td>Id</td>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Body</td>
+        </tr>
+        </thead>
+        <tbody id="data">
+            
+        </tbody>
+    </table>
+
+    <script>
+        const searchparams = new URLSearchParams(window.location.search);
+        const id = searchparams.get("id");
+        let url = `https://jsonplaceholder.typicode.com/posts/${id}/comments`;
+
+        let data = [];
+
+        async function fetchdata() {
+            const response = await fetch(url);
+            data = await response.json();
+            showusers();
+            console.log(data);
+        }
+
+        fetchdata();
+
+        function showusers() {
+            if (data.length >0 ) {
+                var temp = "";
+                data.forEach((userdata) => {
+                    temp += "<tr>";
+                    temp += "<td >" + userdata.postId + "</td>";
+                    temp += "<td >" + userdata.id + "</td>";
+                    temp += "<td>" + userdata.name + "</td>";
+                    temp += "<td>" + userdata.email + "</td>";
+                    temp += "<td>" + userdata.body + "</td>";
+                });
+                document.getElementById('data').innerHTML = temp;
+            }
+        }
+
+    </script>
+</body>
+</html>
