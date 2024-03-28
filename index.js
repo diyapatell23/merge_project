@@ -8,6 +8,7 @@ const task5routes = require('./routes/task5');
 const task6routes = require('./routes/task6');
 const task7routes =  require('./routes/task7');
 const task8routes = require('./routes/task8');
+const task9routes = require('./routes/task9');
 const app = express();
 const port = 8001;
 
@@ -23,6 +24,7 @@ app.use('/task5', task5routes);
 app.use('/task6', task6routes);
 app.use('/task7',task7routes);
 app.use('/task8',task8routes);
+app.use('/task9',task9routes)
 
 
 app.listen(port, ()=>{
