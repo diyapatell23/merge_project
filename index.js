@@ -13,6 +13,8 @@ const task10routes = require('./routes/task10');
 const task11routes = require('./routes/task11');
 const task12routes = require('./routes/task12');
 const task13routes= require('./routes/task13');
+const task14routes= require('./routes/task14');
+
 
 const app = express();
 const port = 8004;
@@ -35,6 +37,7 @@ app.use('/task10', task10routes);
 app.use('/task11', task11routes);
 app.use('/task12',task12routes);
 app.use('/task13', task13routes);
+app.use('/task14',task14routes)
 
 app.listen(port, ()=>{
     console.log("server is listening on port" + port);

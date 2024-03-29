@@ -22,7 +22,7 @@ const login = (req,res)=>{
     var token = crypto.randomBytes(12).toString('hex');
     let query2 = `SELECT username, email FROM users WHERE username ="${name}" AND email="${email}"`;
     
-    connection.query(query2, function (err, result) {
+    connection.query(query2, function (err, result){
         console.log("resulttt", result)
         if (result.length !== 0) {
             res.render('./registration/form', {user: result });
