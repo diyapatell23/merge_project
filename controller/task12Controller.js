@@ -1,13 +1,13 @@
 
 const connection = require('../config/config');
 
-const form = (req,res)=>{
+const form = (req, res) => {
     res.render('./task12/form', { user: [{}], user2: [{}, {}, {}], user3: [{}, {}], user4: [{}, {}, {}], user5: [{}, {}, {}], user6: [{}], user7: [{}], id: false });
 }
 
-const basicdetail = (req,res)=>{
+const basicdetail = (req, res) => {
     let data = req.body;
-    console.log("dataaa",data);
+    console.log("dataaa", data);
     let fname = req.body.fname;
     let lname = req.body.lname;
     let designation = req.body.designation;
@@ -32,282 +32,283 @@ const basicdetail = (req,res)=>{
         else {
             console.log(data1);
             console.log("iddddd", data1.insertId);
-             id = data1.insertId;
+            id = data1.insertId;
         }
         res.json({
-            id:id,
-            message:"data added successfully"});
+            id: id,
+            message: "data added successfully"
+        });
     })
-    
+
 }
 
 
-    
-    const educationdetail = (req,res)=>{
-        console.log("djchdjcndc")
-        let id = req.params.userid;
-        console.log(id)
-        let data2 = req.body;
-        console.log(req.body);
-        let education_detail1 = req.body.education_detail1;
-        let education_detail2 = req.body.education_detail2;
-        let education_detail3 = req.body.education_detail3;
-        let year1 = req.body.year1;
-        let year2 = req.body.year2;
-        let year3 = req.body.year3;
-        let percentage1 = req.body.percentage1;
-        let percentage2 = req.body.percentage2;
-        let percentage3 = req.body.percentage3;
-        let educational_detail = [];
-        educational_detail.push(education_detail1, education_detail2, education_detail3)
-        let year = [];
-        year.push(year1, year2, year3);
-        let percentage = [];
-        percentage.push(percentage1, percentage2, percentage3);
-        for (let i = 0; i < educational_detail.length; i++) {
-            const query2 = `INSERT INTO educational_detail(id,board_name , year, percentage) VALUES("${id}","${educational_detail[i]}", "${year[i]}","${percentage[i]}")`;
-            connection.query(query2, function (err, result1) {
-                if (err) {
-                    console.log(err);
-                }
-                else {
-                    console.log(result1);
-                }
-            })
-        }
-        res.send("data added successfully");
-    }
 
-    const workexperience = (req,res)=>{
-        let id = req.params.userid;
-        console.log(id)
-        let data3 = req.body;
-        console.log(data3);
-        let company1 = req.body.company1;
-        let company2 = req.body.company2;
-        let designation1 = req.body.designation1;
-        let designation2 = req.body.designation2;
-        let from1 = req.body.from1;
-        let from2 = req.body.from2;
-        let to1 = req.body.to1;
-        let to2 = req.body.to2;
-        let company = [];
-        company.push(company1, company2);
-        let designation = [];
-        designation.push(designation1, designation2);
-        let from = [];
-        from.push(from1, from2);
-        let to = [];
-        to.push(to1, to2);
-        for (let i = 0; i < company.length; i++) {
-            const query2 = `INSERT INTO work_experience(id,company1_Name, company1_Designation, company1_Joiningdate,company1_Leavingdate) VALUES("${id}","${company[i]}", "${designation[i]}", "${from[i]}", "${to[i]}")`;
-            connection.query(query2, function (err, result2) {
-                if (err) {
-                    console.log(err);
-                }
-                else {
-                    console.log(result2);
-                }
-            })
-        }
-    }
-
-    const languages = (req,res)=>{
-        let id = req.params.userid;
-        console.log(id)
-        let data4 = req.body;
-        console.log(data4);
-        let language = req.body.language;
-        let htype = req.body.htype;
-        let etype = req.body.etype;
-        let gtype = req.body.gtype;
-        for (let i = 0; i < language.length; i++) {
-            if (language[i] === "hindi") {
-                let read = null;
-                let write = null;
-                let speak = null;
-                htype.forEach((element) => {
-                    if (element == "read") {
-                        read = "yes";
-                    }
-                    if (element == "write") {
-                        write = "yes";
-                    }
-                    if (element == "speak") {
-                        speak = "yes";
-                    }
-                })
-                const query4 = `INSERT INTO languages(id ,language, L_read , L_write, L_speak) VALUES("${id}","${language[i]}", "${read}" , "${write}" , "${speak}")`;
-                connection.query(query4, function (err, result3) {
-                    if (err) {
-                        console.log(err);
-                    }
-                    else {
-                        console.log(result3);
-                    }
-                })
-            }
-            if (language[i] === "english") {
-                let read = null;
-                let write = null;
-                let speak = null;
-                etype.forEach((element) => {
-                    if (element == "read") {
-                        read = "yes";
-                    }
-                    if (element == "write") {
-                        write = "yes";
-                    }
-                    if (element == "speak") {
-                        speak = "yes";
-                    }
-                })
-                const query4 = `INSERT INTO languages(id ,language, L_read , L_write, L_speak) VALUES("${id}","${language[i]}", "${read}" , "${write}" , "${speak}")`;
-                connection.query(query4, function (err, result3) {
-                    if (err) {
-                        console.log(err);
-                    }
-                    else {
-                        console.log(result3);
-                    }
-                })
-            }
-            if (language[i] === "gujarati") {
-                let read = null;
-                let write = null;
-                let speak = null;
-                gtype.forEach((element) => {
-                    if (element == "read") {
-                        read = "yes";
-                    }
-                    if (element == "write") {
-                        write = "yes";
-                    }
-                    if (element == "speak") {
-                        speak = "yes";
-                    }
-                })
-                const query4 = `INSERT INTO languages(id ,language, L_read , L_write, L_speak) VALUES("${id}","${language[i]}", "${read}" , "${write}" , "${speak}")`;
-                connection.query(query4, function (err, result3) {
-                    if (err) {
-                        console.log(err);
-                    }
-                    else {
-                        console.log(result3);
-                    }
-                })
-            }
-        }
-    }
-
-    const technologies = (req,res)=>{
-        let id = req.params.userid;
-        console.log(id)
-        let data5 = req.body;
-        console.log(data5);
-        let ptype = req.body.ptype;
-        let ltype = req.body.ltype;
-        let mtype = req.body.mtype;
-        let otype = req.body.otype;
-        let type = req.body.types;
-
-        for (let i = 0; i < type.length; i++) {
-            if (type[i] === "php") {
-                const query = `INSERT INTO technologies_known(id , tech_name ,tech_level) VALUES("${id}", "${type[i]}", "${ptype}")`;
-                connection.query(query, function (err, result4) {
-                    if (err) {
-                        console.log(err);
-                    }
-                    else {
-                        console.log(result4);
-                    }
-                })
-            }
-            if (type[i] === "mysql") {
-                const query = `INSERT INTO technologies_known(id , tech_name ,tech_level) VALUES("${id}", "${type[i]}", "${mtype}")`;
-                connection.query(query, function (err, result4) {
-                    if (err) {
-                        console.log(err);
-                    }
-                    else {
-                        console.log(result4);
-                    }
-                })
-            }
-            if (type[i] === "larave") {
-                const query = `INSERT INTO technologies_known(id , tech_name ,tech_level) VALUES("${id}", "${type[i]}", "${ltype}")`;
-                connection.query(query, function (err, result4) {
-                    if (err) {
-                        console.log(err);
-                    }
-                    else {
-                        console.log(result4);
-                    }
-                })
-            }
-            if (type[i] === "oracle") {
-                const query = `INSERT INTO technologies_known(id , tech_name ,tech_level) VALUES("${id}", "${type[i]}", "${otype}")`;
-                connection.query(query, function (err, result4) {
-                    if (err) {
-                        console.log(err);
-                    }
-                    else {
-                        console.log(result4);
-                    }
-                })
-            }
-        }
-    }
-
-    const reference = (req,res)=>{
-        let id = req.params.userid;
-        console.log(id)
-        var data6 = req.body;
-        console.log(data6);
-        let reference_name = req.body.reference_name;
-        let reference_contact = req.body.reference_contact;
-        let relation = req.body.reference_relation;
-        const query = `INSERT INTO reference_contact(id,person_name, person_contactNo, person_relation) VALUES("${id}","${reference_name}", "${reference_contact}", "${relation}")`;
-        connection.query(query, function (err, result5) {
+const educationdetail = (req, res) => {
+    console.log("djchdjcndc")
+    let id = req.params.userid;
+    console.log(id)
+    let data2 = req.body;
+    console.log(req.body);
+    let education_detail1 = req.body.education_detail1;
+    let education_detail2 = req.body.education_detail2;
+    let education_detail3 = req.body.education_detail3;
+    let year1 = req.body.year1;
+    let year2 = req.body.year2;
+    let year3 = req.body.year3;
+    let percentage1 = req.body.percentage1;
+    let percentage2 = req.body.percentage2;
+    let percentage3 = req.body.percentage3;
+    let educational_detail = [];
+    educational_detail.push(education_detail1, education_detail2, education_detail3)
+    let year = [];
+    year.push(year1, year2, year3);
+    let percentage = [];
+    percentage.push(percentage1, percentage2, percentage3);
+    for (let i = 0; i < educational_detail.length; i++) {
+        const query2 = `INSERT INTO educational_detail(id,board_name , year, percentage) VALUES("${id}","${educational_detail[i]}", "${year[i]}","${percentage[i]}")`;
+        connection.query(query2, function (err, result1) {
             if (err) {
                 console.log(err);
             }
             else {
-                console.log(result5);
+                console.log(result1);
             }
         })
     }
+    res.send("data added successfully");
+}
 
-    const preferances = (req,res)=>{
-        let id = req.params.userid;
-        console.log(id)
-        let data7 = req.body;
-        console.log(data7);
-        let preferedLocation = req.body.preferedlocation;
-        let noticeperiod = req.body.noticeperiod;
-        let expectedCTC = req.body.Expected_CTC;
-        let currentCTC = req.body.Current_CTC;
-        let Department = req.body.dept;
-        let query = `INSERT INTO preferences(id , Prefered_location,Notice_period,Expected_CTC,Current_CTC,Department) VALUES("${id}", "${preferedLocation}", "${noticeperiod}" , "${expectedCTC}" , "${currentCTC}", "${Department}")`;
-        connection.query(query, function (err, result6) {
+const workexperience = (req, res) => {
+    let id = req.params.userid;
+    console.log(id)
+    let data3 = req.body;
+    console.log(data3);
+    let company1 = req.body.company1;
+    let company2 = req.body.company2;
+    let designation1 = req.body.designation1;
+    let designation2 = req.body.designation2;
+    let from1 = req.body.from1;
+    let from2 = req.body.from2;
+    let to1 = req.body.to1;
+    let to2 = req.body.to2;
+    let company = [];
+    company.push(company1, company2);
+    let designation = [];
+    designation.push(designation1, designation2);
+    let from = [];
+    from.push(from1, from2);
+    let to = [];
+    to.push(to1, to2);
+    for (let i = 0; i < company.length; i++) {
+        const query2 = `INSERT INTO work_experience(id,company1_Name, company1_Designation, company1_Joiningdate,company1_Leavingdate) VALUES("${id}","${company[i]}", "${designation[i]}", "${from[i]}", "${to[i]}")`;
+        connection.query(query2, function (err, result2) {
             if (err) {
                 console.log(err);
             }
             else {
-                console.log(result6);
-
+                console.log(result2);
             }
         })
-        res.send("data added succesfully");
     }
+}
 
-    const insertform = (req,res)=>{
-        res.send("data inserted successfully");
+const languages = (req, res) => {
+    let id = req.params.userid;
+    console.log(id)
+    let data4 = req.body;
+    console.log(data4);
+    let language = req.body.language;
+    let htype = req.body.htype;
+    let etype = req.body.etype;
+    let gtype = req.body.gtype;
+    for (let i = 0; i < language.length; i++) {
+        if (language[i] === "hindi") {
+            let read = null;
+            let write = null;
+            let speak = null;
+            htype.forEach((element) => {
+                if (element == "read") {
+                    read = "yes";
+                }
+                if (element == "write") {
+                    write = "yes";
+                }
+                if (element == "speak") {
+                    speak = "yes";
+                }
+            })
+            const query4 = `INSERT INTO languages(id ,language, L_read , L_write, L_speak) VALUES("${id}","${language[i]}", "${read}" , "${write}" , "${speak}")`;
+            connection.query(query4, function (err, result3) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    console.log(result3);
+                }
+            })
+        }
+        if (language[i] === "english") {
+            let read = null;
+            let write = null;
+            let speak = null;
+            etype.forEach((element) => {
+                if (element == "read") {
+                    read = "yes";
+                }
+                if (element == "write") {
+                    write = "yes";
+                }
+                if (element == "speak") {
+                    speak = "yes";
+                }
+            })
+            const query4 = `INSERT INTO languages(id ,language, L_read , L_write, L_speak) VALUES("${id}","${language[i]}", "${read}" , "${write}" , "${speak}")`;
+            connection.query(query4, function (err, result3) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    console.log(result3);
+                }
+            })
+        }
+        if (language[i] === "gujarati") {
+            let read = null;
+            let write = null;
+            let speak = null;
+            gtype.forEach((element) => {
+                if (element == "read") {
+                    read = "yes";
+                }
+                if (element == "write") {
+                    write = "yes";
+                }
+                if (element == "speak") {
+                    speak = "yes";
+                }
+            })
+            const query4 = `INSERT INTO languages(id ,language, L_read , L_write, L_speak) VALUES("${id}","${language[i]}", "${read}" , "${write}" , "${speak}")`;
+            connection.query(query4, function (err, result3) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    console.log(result3);
+                }
+            })
+        }
     }
+}
+
+const technologies = (req, res) => {
+    let id = req.params.userid;
+    console.log(id)
+    let data5 = req.body;
+    console.log(data5);
+    let ptype = req.body.ptype;
+    let ltype = req.body.ltype;
+    let mtype = req.body.mtype;
+    let otype = req.body.otype;
+    let type = req.body.types;
+
+    for (let i = 0; i < type.length; i++) {
+        if (type[i] === "php") {
+            const query = `INSERT INTO technologies_known(id , tech_name ,tech_level) VALUES("${id}", "${type[i]}", "${ptype}")`;
+            connection.query(query, function (err, result4) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    console.log(result4);
+                }
+            })
+        }
+        if (type[i] === "mysql") {
+            const query = `INSERT INTO technologies_known(id , tech_name ,tech_level) VALUES("${id}", "${type[i]}", "${mtype}")`;
+            connection.query(query, function (err, result4) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    console.log(result4);
+                }
+            })
+        }
+        if (type[i] === "larave") {
+            const query = `INSERT INTO technologies_known(id , tech_name ,tech_level) VALUES("${id}", "${type[i]}", "${ltype}")`;
+            connection.query(query, function (err, result4) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    console.log(result4);
+                }
+            })
+        }
+        if (type[i] === "oracle") {
+            const query = `INSERT INTO technologies_known(id , tech_name ,tech_level) VALUES("${id}", "${type[i]}", "${otype}")`;
+            connection.query(query, function (err, result4) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    console.log(result4);
+                }
+            })
+        }
+    }
+}
+
+const reference = (req, res) => {
+    let id = req.params.userid;
+    console.log(id)
+    var data6 = req.body;
+    console.log(data6);
+    let reference_name = req.body.reference_name;
+    let reference_contact = req.body.reference_contact;
+    let relation = req.body.reference_relation;
+    const query = `INSERT INTO reference_contact(id,person_name, person_contactNo, person_relation) VALUES("${id}","${reference_name}", "${reference_contact}", "${relation}")`;
+    connection.query(query, function (err, result5) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log(result5);
+        }
+    })
+}
+
+const preferances = (req, res) => {
+    let id = req.params.userid;
+    console.log(id)
+    let data7 = req.body;
+    console.log(data7);
+    let preferedLocation = req.body.preferedlocation;
+    let noticeperiod = req.body.noticeperiod;
+    let expectedCTC = req.body.Expected_CTC;
+    let currentCTC = req.body.Current_CTC;
+    let Department = req.body.dept;
+    let query = `INSERT INTO preferences(id , Prefered_location,Notice_period,Expected_CTC,Current_CTC,Department) VALUES("${id}", "${preferedLocation}", "${noticeperiod}" , "${expectedCTC}" , "${currentCTC}", "${Department}")`;
+    connection.query(query, function (err, result6) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log(result6);
+
+        }
+    })
+    res.send("data added succesfully");
+}
+
+const insertform = (req, res) => {
+    res.send("data inserted successfully");
+}
 
 
 
-const getformdata = (req,res)=>{
+const getformdata = (req, res) => {
     console.log('inside');
     var userId = req.params.id;
     console.log("idddddddddddd", userId)
@@ -373,4 +374,314 @@ const getformdata = (req,res)=>{
     })
 }
 
-module.exports = {form, basicdetail, educationdetail, workexperience, technologies , reference, preferances, languages, getformdata, insertform};
+const updatebasicdetail = (req, res) => {
+    console.log('insidee')
+    var id = req.body.id;
+    let fname = req.body.fname;
+    let lname = req.body.lname;
+    let designation = req.body.designation;
+    let address1 = req.body.address1;
+    let contact = req.body.contact;
+    let address2 = req.body.address2;
+    let email = req.body.email;
+    let city = req.body.city;
+    let gender = req.body.gender;
+    let state = req.body.state;
+    let zipcode = req.body.zipcode;
+    let date = req.body.date;
+    var query = `UPDATE basic_detail SET Fname ="${fname}", Lname="${lname}", Designation="${designation}", Email="${email}", Phone_No= "${contact}", Address_1="${address1}", Address_2="${address2}", State="${state}",City="${city}",Gender="${gender}", Zip_code="${zipcode}" , DoB="${date}" WHERE Eid = "${id}"`;
+    connection.query(query, function (err, result10) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log(result10);
+            res.send('data updated');
+        }
+    })
+}
+
+const updateeducationdetail = (req, res) => {
+    var id = req.body.id;
+    var edu_id = req.body.edu_id;
+    let education_detail1 = req.body.education_detail1;
+    let education_detail2 = req.body.education_detail2;
+    let education_detail3 = req.body.education_detail3;
+    let year1 = req.body.year1;
+    let year2 = req.body.year2;
+    let year3 = req.body.year3;
+    let percentage1 = req.body.percentage1;
+    let percentage2 = req.body.percentage2;
+    let percentage3 = req.body.percentage3;
+    let educational_detail = [];
+    educational_detail.push(education_detail1, education_detail2, education_detail3)
+    let year = [];
+    year.push(year1, year2, year3);
+    let percentage = [];
+    percentage.push(percentage1, percentage2, percentage3);
+    for (let i = 0; i < educational_detail.length; i++) {
+        const query2 = `UPDATE educational_detail SET board_name= "${educational_detail[i]}" , year ="${year[i]}", percentage="${percentage[i]}" WHERE id="${id}" AND edu_id="${edu_id[i]}"`;
+        connection.query(query2, function (err, result1) {
+            if (err) {
+                console.log(err);
+            }
+            else {
+                console.log(result1);
+            }
+        })
+    }
+    res.send("data added successfully");
+}
+
+const updatelanguages = (req, res) => {
+    let id = req.body.id;
+    let language = req.body.language;
+    let htype = req.body.htype;
+    let etype = req.body.etype;
+    let gtype = req.body.gtype;
+
+    let query = `SELECT language FROM languages WHERE id="${id}"`;
+    connection.query(query, function (err, result) {
+        if (err) {
+            console.log(err);
+        }
+        let languages = []
+        result.forEach((element) => {
+            languages.push(element.language)
+        })
+        for (let i = 0; i < language.length; i++) {
+            if (language[i] === "hindi") {
+                let read = null;
+                let write = null;
+                let speak = null;
+                htype.forEach((element) => {
+                    if (element == "read") {
+                        read = "yes";
+                    }
+                    if (element == "write") {
+                        write = "yes";
+                    }
+                    if (element == "speak") {
+                        speak = "yes";
+                    }
+                })
+                let query5;
+                if (languages.includes("hindi")) {
+                    query5 = `UPDATE languages SET language="${language[i]}" , L_read="${read}", L_write="${write}" , L_speak="${speak}" WHERE id=${id} AND language="${language[i]}"`;
+                }
+                else {
+                    query5 = `INSERT INTO languages(id ,language, L_read , L_write, L_speak) VALUES("${id}","${language[i]}", "${read}" , "${write}" , "${speak}")`;
+                }
+
+                connection.query(query5, function (err, result3) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                    }
+                })
+            }
+            if (language[i] === "english") {
+                let read = null;
+                let write = null;
+                let speak = null;
+                etype.forEach((element) => {
+                    if (element == "read") {
+                        read = "yes";
+                    }
+                    if (element == "write") {
+                        write = "yes";
+                    }
+                    if (element == "speak") {
+                        speak = "yes";
+                    }
+                })
+                let query4;
+                if (languages.includes("english")) {
+                    query4 = `UPDATE languages SET language="${language[i]}" , L_read="${read}", L_write="${write}" , L_speak="${speak}" WHERE id=${id} AND language="${language[i]}"`;
+                }
+                else {
+                    query4 = `INSERT INTO languages(id ,language, L_read , L_write, L_speak) VALUES("${id}","${language[i]}", "${read}" , "${write}" , "${speak}")`;
+                }
+                connection.query(query4, function (err, result3) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+
+                    }
+                })
+            }
+            if (language[i] === "gujarati") {
+                let read = null;
+                let write = null;
+                let speak = null;
+                gtype.forEach((element) => {
+                    if (element == "read") {
+                        read = "yes";
+                    }
+                    if (element == "write") {
+                        write = "yes";
+                    }
+                    if (element == "speak") {
+                        speak = "yes";
+                    }
+                })
+                let query4;
+                if (languages.includes("gujarati")) {
+                    query4 = `UPDATE languages SET language="${language[i]}" , L_read="${read}", L_write="${write}" , L_speak="${speak}" WHERE id=${id} AND language="${language[i]}"`;
+                }
+                else {
+                    query4 = `INSERT INTO languages(id ,language, L_read , L_write, L_speak) VALUES("${id}","${language[i]}", "${read}" , "${write}" , "${speak}")`;
+                }
+
+
+                connection.query(query4, function (err, result3) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+
+                    }
+                })
+            }
+        }
+    })
+}
+
+const updatetechnologies = (req, res) => {
+    let ptype = req.body.ptype;
+    let id = req.body.id;
+    let ltype = req.body.ltype;
+    let mtype = req.body.mtype;
+    let otype = req.body.otype;
+    let type = req.body.types;
+
+    let newquery = `SELECT tech_name FROM technologies_known WHERE id="${id}"`;
+    connection.query(newquery, function (err, result) {
+        console.log('newqueryyy', result);
+        if (err) {
+            console.log(err);
+        }
+        let tech = [];
+        result.forEach((element) => {
+            tech.push(element.tech_name);
+        })
+        for (let i = 0; i < type.length; i++) {
+            if (type[i] === "php") {
+                let query;
+                if (tech.includes("php")) {
+                    query = `UPDATE technologies_known SET tech_name="${type[i]}" ,tech_level="${ptype}" WHERE id=${id}`
+                }
+                else {
+                    query = `INSERT INTO technologies_known(id , tech_name ,tech_level) VALUES("${id}", "${type[i]}", "${ptype}")`;
+
+                }
+                connection.query(query, function (err, result) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        console.log(result);
+                    }
+                })
+            }
+            if (type[i] === "mysql") {
+                let query;
+                if (tech.includes("mysql")) {
+                    query = `UPDATE technologies_known SET tech_name="${type[i]}", tech_level="${mtype}" WHERE id=${id}`
+                }
+                else {
+                    query = `INSERT INTO technologies_known(id , tech_name ,tech_level) VALUES("${id}", "${type[i]}", "${mtype}")`;
+
+                }
+                connection.query(query, function (err, result) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        console.log(result);
+                    }
+                })
+            }
+            if (type[i] === "larave") {
+                let query;
+                if (tech.includes("larave")) {
+                    query = `UPDATE technologies_known SET tech_name="${type[i]}", tech_level="${ltype}" WHERE id=${id}`
+                }
+                else {
+                    query = `INSERT INTO technologies_known(id , tech_name ,tech_level) VALUES("${id}", "${type[i]}", "${ltype}")`;
+                }
+                connection.query(query, function (err, result) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        console.log(result);
+                    }
+                })
+            }
+            if (type[i] === "oracle") {
+                let query;
+                if (tech.includes("oracle")) {
+                    query = `UPDATE technologies_known SET tech_name="${type[i]}", tech_level="${otype}" WHERE id=${id}`
+                }
+                else {
+                    query = `INSERT INTO technologies_known(id , tech_name ,tech_level) VALUES("${id}", "${type[i]}", "${otype}")`;
+                }
+                console.log("techqueryyyy", query)
+                connection.query(query, function (err, result) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        console.log(result);
+                    }
+                })
+            }
+        }
+    })
+}
+
+const referencesupdate = (req,res)=>{
+    let reference_name = req.body.reference_name;
+    let reference_contact = req.body.reference_contact;
+    let relation = req.body.reference_relation;
+    let id = req.body.id;
+    let query11 = `UPDATE reference_contact SET person_name="${reference_name}", person_contactNo ="${reference_contact}" , person_relation="${relation}" WHERE id="${id}"`;
+    connection.query(query11, function (err, result2) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log(result2);
+        }
+    })
+}
+
+const preferencesupdate = (req,res)=>{
+    let preferedLocation = req.body.preferedlocation;
+    let noticeperiod = req.body.noticeperiod;
+    let expectedCTC = req.body.Expected_CTC;
+    let currentCTC = req.body.Current_CTC;
+    let Department = req.body.dept;
+    let id = req.body.id;
+    const query6 = `UPDATE preferences SET prefered_location="${preferedLocation}" ,Notice_period="${noticeperiod}", Expected_CTC="${expectedCTC}",Current_CTC="${currentCTC}",Department="${Department}" WHERE id="${id}"`;
+    connection.query(query6, function (err, result) {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log(result);
+        }
+    })
+    res.send("data updated ")
+}
+
+const updateform = (req,res)=>{
+    res.send("data updated");
+}
+
+
+
+module.exports = { form, basicdetail, educationdetail, workexperience, technologies, reference, preferances, languages, getformdata, insertform , updatebasicdetail, updateeducationdetail, updatelanguages, updatetechnologies, updateform, referencesupdate, preferencesupdate};

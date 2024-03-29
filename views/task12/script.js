@@ -646,7 +646,7 @@ async function updatebasic_detail() {
     basicdetails.state = document.getElementById('state').value;
     basicdetails.date = document.getElementById('date').value;
     basicdetails.gender = finalgender;
-    let url = `http://localhost:8004/task4/updatebasicdetail/:id`;
+    let url = `http://localhost:8004/task12/updatebasicdetail/:id`;
     const response = await fetch(url, {
         method: 'POST',
         mode: 'cors',
