@@ -66,18 +66,14 @@ const loginform = (req,res)=>{
 }
 
 const finallogin = (req,res)=>{
-    console.log("hellooo")
     let data = req.body;
-    console.log("data", data)
     let name = req.body.name;
     let password = req.body.password;
     var token = crypto.randomBytes(12).toString('hex');
     const payload = {email:name};
-    console.log(process.env.JWT_SECRET_KEY,"iuhoiuhiuhiuhuh");
     const jwtToken = jwt.sign(payload,process.env.JWT_SECRET_KEY, {expiresIn:'1h'});
     let query = `SELECT username , password ,activationstatus FROM users WHERE username="${name}" AND password="${password}" AND activationstatus=1`
     connection.query(query, function (err, result) {
-        console.log("rsult", result)
         if (err) {
             console.log(err);
         }
