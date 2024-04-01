@@ -19,10 +19,10 @@ const getquerydata = (req, res) => {
     let final_query;
 
     if (query_name.includes("LIMIT")) {
-        final_query = query_name;
+        final_query = query_name
     }
     else {
-        final_query = f_query;
+        final_query = f_query
     }
     connection.query(`${final_query}`, (err, results, fields) => {
         if (err) {

@@ -3,7 +3,7 @@ const connection = require('../config/config');
 const md5 = require('md5');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
-
+require('dotenv').config();
 
 const registration = (req,res)=>{
     res.render('./registration/form', { user: [{}] });
@@ -66,14 +66,15 @@ const loginform = (req,res)=>{
 }
 
 const finallogin = (req,res)=>{
+    console.log("hellooo")
     let data = req.body;
     console.log("data", data)
     let name = req.body.name;
     let password = req.body.password;
     var token = crypto.randomBytes(12).toString('hex');
     const payload = {email:name};
-    const jwtToken = jwt.sign(payload,token, {expiresIn:'1h'});
-    console.log("jwttoken", jwtToken)
+    console.log(process.env.JWT_SECRET_KEY,"iuhoiuhiuhiuhuh");
+    const jwtToken = jwt.sign(payload,process.env.JWT_SECRET_KEY, {expiresIn:'1h'});
     let query = `SELECT username , password ,activationstatus FROM users WHERE username="${name}" AND password="${password}" AND activationstatus=1`
     connection.query(query, function (err, result) {
         console.log("rsult", result)
@@ -81,10 +82,10 @@ const finallogin = (req,res)=>{
             console.log(err);
         }
         else if (result.length > 0){
-            // res.cookie("jwtToken", jwtToken).send("login succesfully");
             res.cookie("jwtToken",jwtToken);
-            res.render('./registration/main');
+            res.redirect('/main/tasks');
         }
+        
         else {
             res.send("invalid username or password");
         }
@@ -144,4 +145,8 @@ const setpassword = (req,res) =>{
     })
 }
 
-module.exports = {registration, login, activation, loginform, finallogin, getforgotpassword, setforgotpassword, getpassword, setpassword};
+const dashboard = (req,res)=>{
+    res.render('./registration/main')
+}
+
+module.exports = {registration, login, activation, loginform, finallogin, getforgotpassword, setforgotpassword, getpassword, setpassword, dashboard};

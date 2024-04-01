@@ -1,4 +1,5 @@
 const express = require('express');
+const coookieParser = require('cookie-parser');
 const routes= require('./routes/registration');
 const task1routes = require('./routes/task1');
 const task2routes = require('./routes/task2');
@@ -15,9 +16,9 @@ const task12routes = require('./routes/task12');
 const task13routes= require('./routes/task13');
 const task14routes= require('./routes/task14');
 
-
 const app = express();
 const port = 8004;
+app.use(coookieParser());
 app.use(express.json());
 app.use(express.static(__dirname + "/views"));
 app.set("view engine", "ejs");
