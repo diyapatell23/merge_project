@@ -71,15 +71,12 @@
 
     <script>
         var count = 0;
-
         function myFun() {
-
-            
             count++;
             console.log(count);
             document.getElementById("score").innerHTML = count;
-            //insert row
 
+            //insert row
             let table1 = document.getElementById("table");
             let a = table1.rows.length;
             let row = table.insertRow(a);
@@ -94,7 +91,6 @@
             }
 
             //color
-
             var total = (table1.rows.length) * (table1.rows[0].cells.length);
             console.log(total);
             var var1 = document.getElementsByTagName('td');
@@ -132,7 +128,7 @@
             }
         }
 
-        function timer() {
+        function timer(){
             var sec = 10;
             var timer = setInterval(function () {
                 document.getElementById('btn1').innerHTML = '00:' + sec;
@@ -152,7 +148,6 @@
                 clearInterval(timer);
                 alert("Game Paused!!")
             })
-
         }
 
     </script>

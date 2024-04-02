@@ -10,10 +10,8 @@ const registration = (req,res)=>{
 }
 
 const login = (req,res)=>{
-    console.log(req.body);
     let data = req.body;
     let name = req.body.name;
-    console.log("namee", name);
     let email = req.body.email;
     let password = req.body.password;
     let newpassword = password + val;
@@ -23,7 +21,6 @@ const login = (req,res)=>{
     let query2 = `SELECT username, email FROM users WHERE username ="${name}" AND email="${email}"`;
     
     connection.query(query2, function (err, result){
-        console.log("resulttt", result)
         if (result.length !== 0) {
             res.render('./registration/form', {user: result });
         }
@@ -34,7 +31,7 @@ const login = (req,res)=>{
                     console.log(err);
                 }
                 else {
-                    res.render('./registration/activation', { userid: result.insertId, activationkey: token });
+                    res.render('./registration/activation', {userid: result.insertId, activationkey: token });
                 }
             })
         }
@@ -81,7 +78,6 @@ const finallogin = (req,res)=>{
             res.cookie("jwtToken",jwtToken);
             res.redirect('/main/tasks');
         }
-        
         else {
             res.send("invalid username or password");
         }

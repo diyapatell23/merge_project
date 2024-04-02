@@ -6,14 +6,13 @@ const result = (req, res) => {
         var page = Number(req.params.page);
         var totalrecords = 10;
         var recordsperpage = 5;
-        id = req.query.id;
-        console.log(id);
+        
         var start = page * recordsperpage - recordsperpage;
         connection.query(`SELECT student_master.student_id, student_master.Name, student_master.Email, student_master.ContactNo ,SUM(result.theory_exam_marks) as p_theory, SUM(result.practical_exam_marks) as p_practical FROM student_master 
     JOIN result ON student_master.student_id = result.student_id
      WHERE result.exam_id = '1'
      GROUP BY student_master.student_id , student_master.Name
-     LIMIT ${recordsperpage} OFFSET ${start}`, (err, result1) => {
+     LIMIT ${recordsperpage} OFFSET ${start}`, (err, result1, fields) => {
             if (err) {
                 console.log(err);
             }
@@ -34,13 +33,13 @@ const result = (req, res) => {
                     if (err) {
                         console.log(err);
                     }
-                    connection.query(`SELECT * FROM student_master WHERE student_id = ${id}`, (err, results, fields) => {
-                        if (err) {
-                            console.log(err);
-                        }
+                    res.render('./task6/student_result', { user1: result1, user2: result2, user3: result3, fields: fields, pageno: page })
+                    // connection.query(`SELECT * FROM student_master WHERE student_id = ${id}`, (err, results, fields) => {
+                    //     if (err) {
+                    //         console.log(err);
+                    //     }
 
-                        res.render('./task6/student_result', { user1: result1, user2: result2, user3: result3, user: results, fields: fields, pageno: page })
-                    })
+                    // })
                 })
             });
 
@@ -52,9 +51,7 @@ const result = (req, res) => {
 
 const searchbyid = (req, res) => {
     try {
-        console.log("searchbyid", id);
         id = req.query.id;
-        console.log(id);
         if (id !== "") {
             connection.query(`SELECT student_master.student_id, student_master.Name, student_master.Email, student_master.ContactNo ,SUM(result.theory_exam_marks) as p_theory, SUM(result.practical_exam_marks) as p_practical FROM student_master JOIN result ON student_master.student_id = result.student_id WHERE result.exam_id = '1' AND student_master.student_id=${id} GROUP BY student_master.student_id , student_master.Name`, (err, result1) => {
                 if (err) {

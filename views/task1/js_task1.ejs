@@ -15,10 +15,6 @@
             margin-top: 100px;
         }
 
-        /* th,td,tr {
-            border: 3px solid black;
-        } */
-
         table {
             width: 30%;
             border-collapse: collapse;
@@ -91,9 +87,8 @@
         function myfunction1() {
             let x = document.getElementById("table1");
             let cols = x.rows[0].cells.length;
+            console.log("cols", cols)
             let row_plus = x.insertRow(x.rows.length);
-
-
             for(var i= 0; i<cols;i++){
                var cell = row_plus.insertCell(i);
             }

@@ -43,7 +43,7 @@
         <p onclick="myfun2()">Show More</p><br>
     </div>
 
-    <div class="filter-data"  id="filter-data" style="display: none;">
+    <div class="filter-data" id="filter-data" style="display: none;">
         <input type="text" name="name" id="name" placeholder="Enter Name">
         <input type="text" name="email" id="email" placeholder="Enter Email">
         <input type="text" name="contactno" id="contactno" placeholder="Enter ContactNo">
@@ -149,15 +149,12 @@
 
     <script>
         function searchbyid(){
-            console.log("hellooo");
             let id = document.getElementById('sid').value;
-            console.log("idddd",id);
             window.location.href = `/task6/search?id=${id}`;
         }
 
         function myfun2(){
             let data = document.getElementById('filter-data');
-          
             if(data.style.display == "none"){
                 data.style.display = "block";
             } 
@@ -173,7 +170,6 @@
             let operator = document.getElementById('operator').value;
             window.location.href = `/task6/search2?operator=${operator}&name=${name}&email=${email}&number=${number}`;
         }
-
 
     </script>
     

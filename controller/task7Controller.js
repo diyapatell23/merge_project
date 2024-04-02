@@ -1,7 +1,6 @@
 const connection = require('../config/config');
 
 const searchquery = (req, res) => {
-    console.log("seaarchqueryy")
     if (req.body.page == '') {
         res.redirect('?page=1')
     }
@@ -9,7 +8,6 @@ const searchquery = (req, res) => {
 }
 
 const getquerydata = (req, res) => {
-    console.log("getdataa");
     var page = Number(req.query.page);
     var recordsperpage = 10;
     var start = page * recordsperpage - recordsperpage;
@@ -18,7 +16,7 @@ const getquerydata = (req, res) => {
     let f_query = `${query_name} ${limit}`;
     let final_query;
 
-    if (query_name.includes("LIMIT")) {
+    if (query_name.includes("LIMIT")){
         final_query = query_name
     }
     else {

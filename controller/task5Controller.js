@@ -1,7 +1,6 @@
 const connection = require('../config/config');
 
 const monthfilter = (req,res)=>{
-    console.log("insideee")
     var totalpage = 2;
     var page = Number(req.params.page);
     var totalrecords = 10;
@@ -15,7 +14,6 @@ const monthfilter = (req,res)=>{
     }
 
     let newmonth;
-    console.log(month)
     if(month == "december-2023"){
         newmonth = 12;
     }
