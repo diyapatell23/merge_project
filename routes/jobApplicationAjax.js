@@ -2,8 +2,8 @@ const express = require('express');
 const auth = require('../middlewares/auth');
 const routes = express.Router();
 
-const controller = require('../controller/task12Controller');
-const { route } = require('./task12');
+const controller = require('../controller/jobApplicationAjax');
+const { route } = require('./jobApplicationAjax');
 
 routes.get('/form',auth, controller.form);
 routes.post('/basicdetail',auth, controller.basicdetail);

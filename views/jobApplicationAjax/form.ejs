@@ -35,7 +35,6 @@
 
 <body>
     <% if(user[0].Fname){%>
-        <p><%=user[0].Fname%></p>
         <form action="/task12/updateform" method="post" name="myform" id="form">
             <% } else{ %>
                 <form action="/task12/insertform" method="post" name="myform" id="form">
@@ -344,7 +343,7 @@
                             </div>
                         </div>
                 </form>
-                <script src="/task12/script.js"></script>
+                <script src="/jobApplicationAjax/script.js"></script>
                 <script>
                     
                     if (`<%=user7[0].Department %>`) {

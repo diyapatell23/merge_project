@@ -12,7 +12,7 @@ const task8routes = require('./routes/delimiterSearch');
 const task9routes = require('./routes/timezoneConverter');
 const task10routes = require('./routes/fetchApi');
 const task11routes = require('./routes/jobApplication');
-const task12routes = require('./routes/task12');
+const task12routes = require('./routes/jobApplicationAjax');
 const task13routes= require('./routes/comboGenerator');
 const task14routes= require('./routes/dynamicCountryState');
 

@@ -26,7 +26,6 @@ const auth = (req,res, next)=>{
                 }
             })
         });
-       
     }
     else{
         // res.redirect('/main/loginform');

@@ -1331,6 +1331,7 @@ percentage FLOAT
 select * from educational_detail;
 
 CREATE TABLE work_experience(
+work_id INT AUTO_INCREMENT NOT NULL UNIQUE,
 id INT NOT NULL,
 company1_Name VARCHAR(50),
 company1_Designation VARCHAR(50),

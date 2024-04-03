@@ -2,7 +2,7 @@ const connection = require('../config/config');
 
 const form = (req, res) => {
     try {
-        res.render('./task11/formmain', { user: [{}], user2: [{}, {}, {}], user3: [{}, {}], user4: [{}, {}, {}], user5: [{}, {}, {}], user6: [{}], user7: [{}] });
+        res.render('./jobApplication/formmain', { user: [{}], user2: [{}, {}, {}], user3: [{}, {}], user4: [{}, {}, {}], user5: [{}, {}, {}], user6: [{}], user7: [{}] });
     } catch (err) {
         console.log(err);
     }
@@ -289,7 +289,7 @@ const getuser = (req, res) => {
                                     console.log(err);
                                 }
                                 else {
-                                    res.render('./task11/formmain', { user: result, user2: result2, user3: result3, user4: result4, user5: result5, user6: result6, user7: result7, id: userId });
+                                    res.render('./jobApplication/formmain', { user: result, user2: result2, user3: result3, user4: result4, user5: result5, user6: result6, user7: result7, id: userId });
                                 }
                             })
                         })
