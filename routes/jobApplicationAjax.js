@@ -16,14 +16,12 @@ routes.post('/preferences/:userid',auth, controller.preferances);
 routes.get('/form/:id',auth, controller.getformdata);
 routes.post('/insertform',auth, controller.insertform);
 routes.post('/updatebasicdetail/:id',auth, controller.updatebasicdetail);
+routes.post('/updatework_experience/:id', auth, controller.updatework_experience);
 routes.post('/updateeducationdetail/:id', auth,controller.updateeducationdetail);
 routes.post('/updatelanguages/:id',auth, controller.updatelanguages);
 routes.post('/technologiesupdate/:id',auth, controller.updatetechnologies);
 routes.post('/referencesupdate/:id',auth, controller.referencesupdate);
 routes.post('/preferencesupdate:id',auth, controller.preferencesupdate);
 routes.post('/updateform',auth, controller.updateform);
-
-
-
 
 module.exports = routes;

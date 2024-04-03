@@ -1,5 +1,6 @@
 
 const connection = require('../config/config');
+const { result } = require('./resultGrid');
 
 const form = (req, res) => {
     try {
@@ -346,8 +347,8 @@ const updatebasicdetail = (req, res) => {
 }
 
 const updateeducationdetail = (req, res) => {
-    var id = req.body.id;
-    var edu_id = req.body.edu_id;
+    let id = req.body.id;
+    let edu_id = req.body.edu_id;
     let education_detail1 = req.body.education_detail1;
     let education_detail2 = req.body.education_detail2;
     let education_detail3 = req.body.education_detail3;
@@ -373,7 +374,34 @@ const updateeducationdetail = (req, res) => {
     }
 }
 
-
+const updatework_experience = (req, res) => {
+    let id = req.body.id;
+    let work_id = req.body.work_id;
+    let company1 = req.body.company1;
+    let company2 = req.body.company2;
+    let designation1 = req.body.designation1;
+    let designation2 = req.body.designation2;
+    let from1 = req.body.from1;
+    let from2 = req.body.from2;
+    let to1 = req.body.to1;
+    let to2 = req.body.to2;
+    let company = [];
+    company.push(company1, company2);
+    let designation = [];
+    designation.push(designation1, designation2);
+    let from = [];
+    from.push(from1, from2);
+    let to = [];
+    to.push(to1, to2);
+    for (let i = 0; i < company.length; i++) {
+        const query2 = `UPDATE work_experience SET company1_Name= "${company[i]}" , company1_Designation ="${designation[i]}", company1_Joiningdate="${from[i]}",company1_Leavingdate="${to[i]}" WHERE id="${id}" AND work_id="${work_id[i]}"`;
+        connection.query(query2, function (err, result1) {
+            if (err) {
+                console.log(err);
+            }
+        })
+    }
+}
 
 const updatelanguages = (req, res) => {
     let id = req.body.id;
@@ -419,8 +447,7 @@ const updatelanguages = (req, res) => {
                     if (err) {
                         console.log(err);
                     }
-                    else {
-                    }
+
                 })
             }
             if (language[i] === "english") {
@@ -449,9 +476,6 @@ const updatelanguages = (req, res) => {
                     if (err) {
                         console.log(err);
                     }
-                    else {
-
-                    }
                 })
             }
             if (language[i] === "gujarati") {
@@ -476,14 +500,9 @@ const updatelanguages = (req, res) => {
                 else {
                     query4 = `INSERT INTO languages(id ,language, L_read , L_write, L_speak) VALUES("${id}","${language[i]}", "${read}" , "${write}" , "${speak}")`;
                 }
-
-
                 connection.query(query4, function (err, result3) {
                     if (err) {
                         console.log(err);
-                    }
-                    else {
-
                     }
                 })
             }
@@ -501,7 +520,6 @@ const updatetechnologies = (req, res) => {
 
     let newquery = `SELECT tech_name FROM technologies_known WHERE id="${id}"`;
     connection.query(newquery, function (err, result) {
-        console.log('newqueryyy', result);
         if (err) {
             console.log(err);
         }
@@ -513,7 +531,7 @@ const updatetechnologies = (req, res) => {
             if (type[i] === "php") {
                 let query;
                 if (tech.includes("php")) {
-                    query = `UPDATE technologies_known SET tech_name="${type[i]}" ,tech_level="${ptype}" WHERE id=${id}`
+                    query = `UPDATE technologies_known SET tech_name="${type[i]}" ,tech_level="${ptype}" WHERE id=${id} AND tech_name="${type[i]}"`
                 }
                 else {
                     query = `INSERT INTO technologies_known(id , tech_name ,tech_level) VALUES("${id}", "${type[i]}", "${ptype}")`;
@@ -523,15 +541,12 @@ const updatetechnologies = (req, res) => {
                     if (err) {
                         console.log(err);
                     }
-                    else {
-                        console.log(result);
-                    }
                 })
             }
             if (type[i] === "mysql") {
                 let query;
                 if (tech.includes("mysql")) {
-                    query = `UPDATE technologies_known SET tech_name="${type[i]}", tech_level="${mtype}" WHERE id=${id}`
+                    query = `UPDATE technologies_known SET tech_name="${type[i]}", tech_level="${mtype}" WHERE id=${id} AND tech_name="${type[i]}"`
                 }
                 else {
                     query = `INSERT INTO technologies_known(id , tech_name ,tech_level) VALUES("${id}", "${type[i]}", "${mtype}")`;
@@ -541,15 +556,12 @@ const updatetechnologies = (req, res) => {
                     if (err) {
                         console.log(err);
                     }
-                    else {
-                        console.log(result);
-                    }
                 })
             }
             if (type[i] === "larave") {
                 let query;
                 if (tech.includes("larave")) {
-                    query = `UPDATE technologies_known SET tech_name="${type[i]}", tech_level="${ltype}" WHERE id=${id}`
+                    query = `UPDATE technologies_known SET tech_name="${type[i]}", tech_level="${ltype}" WHERE id=${id} AND tech_name="${type[i]}"`
                 }
                 else {
                     query = `INSERT INTO technologies_known(id , tech_name ,tech_level) VALUES("${id}", "${type[i]}", "${ltype}")`;
@@ -558,26 +570,19 @@ const updatetechnologies = (req, res) => {
                     if (err) {
                         console.log(err);
                     }
-                    else {
-                        console.log(result);
-                    }
                 })
             }
             if (type[i] === "oracle") {
                 let query;
                 if (tech.includes("oracle")) {
-                    query = `UPDATE technologies_known SET tech_name="${type[i]}", tech_level="${otype}" WHERE id=${id}`
+                    query = `UPDATE technologies_known SET tech_name="${type[i]}", tech_level="${otype}" WHERE id=${id} AND tech_name="${type[i]}"`
                 }
                 else {
                     query = `INSERT INTO technologies_known(id , tech_name ,tech_level) VALUES("${id}", "${type[i]}", "${otype}")`;
                 }
-                console.log("techqueryyyy", query)
                 connection.query(query, function (err, result) {
                     if (err) {
                         console.log(err);
-                    }
-                    else {
-                        console.log(result);
                     }
                 })
             }
@@ -595,9 +600,6 @@ const referencesupdate = (req, res) => {
         if (err) {
             console.log(err);
         }
-        else {
-            console.log(result2);
-        }
     })
 }
 
@@ -613,15 +615,11 @@ const preferencesupdate = (req, res) => {
         if (err) {
             console.log(err);
         }
-        else {
-            console.log(result);
-        }
     })
-    res.send("data updated ")
 }
 
 const updateform = (req, res) => {
     res.send("data updated");
 }
 
-module.exports = { form, basicdetail, educationdetail, workexperience, technologies, reference, preferances, languages, getformdata, insertform, updatebasicdetail, updateeducationdetail, updatelanguages, updatetechnologies, updateform, referencesupdate, preferencesupdate };
+module.exports = { form, basicdetail, educationdetail, workexperience, technologies, reference, preferances, languages, getformdata, insertform, updatebasicdetail, updateeducationdetail, updatelanguages, updatetechnologies, updateform, referencesupdate, preferencesupdate ,updatework_experience};

@@ -14,7 +14,6 @@ function showTab(n) {
     }
 
     if (n == (tab.length - 1)) {
-
         document.getElementById('nextbutton').innerHTML = "Submit";
 
     }
@@ -29,6 +28,9 @@ function fun(n) {
     }
     if (currentTab == 1) {
         updateeducation_detail();
+    }
+    if(currentTab == 2){
+        updatework_experience();
     }
     if (currentTab == 3) {
         update_languages();
@@ -720,6 +722,33 @@ async function fetchwork_experience() {
     workexperience.to2 = document.getElementById('to2').value;
 
     let url = `http://localhost:8004/task12/work_experience/${userid}`;
+    const response = await fetch(url, {
+        method: 'POST',
+        mode: 'cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(workexperience),
+    })
+        .then(response => response.json);
+}
+
+async function updatework_experience(){
+    let workexperience={};
+    let work_id = [];
+    workexperience.id = document.getElementById('workid').value;
+    let work_id1 = document.getElementById('work_id1').value;
+    let work_id2 = document.getElementById('work_id2').value;
+    work_id.push(work_id1, work_id2);
+    workexperience.work_id = work_id;
+    workexperience.company1 = document.getElementById('company1').value;
+    workexperience.company2 = document.getElementById('company2').value;
+    workexperience.designation1 = document.getElementById('designation1').value;
+    workexperience.designation2 = document.getElementById('designation2').value;
+    workexperience.from1 = document.getElementById('from1').value;
+    workexperience.from2 = document.getElementById('from2').value;
+    workexperience.to1 = document.getElementById('to1').value;
+    workexperience.to2 = document.getElementById('to2').value;
+
+    let url = `http://localhost:8004/task12/updatework_experience/${userid}`;
     const response = await fetch(url, {
         method: 'POST',
         mode: 'cors',

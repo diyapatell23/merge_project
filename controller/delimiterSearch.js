@@ -24,7 +24,7 @@ const getdelimitersearchdata = (req,res)=>{
     let city_index = findindex(':', data);
     let city = findstring(city_index, data, "City");
 
-    const query = `SELECT * FROM delimiter_search WHERE ${fname} AND ${l_name} AND ${email_name} AND ${age} AND ${contactNo} AND  ${city}`;
+    const query = `SELECT * FROM delimiter_search WHERE ${fname} OR ${l_name} OR ${email_name} OR ${age} OR ${contactNo} OR  ${city}`;
     connection.query(query, (err, results, fields) => {
         if (err) {
             console.log(err);

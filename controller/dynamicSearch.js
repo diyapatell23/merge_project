@@ -24,7 +24,6 @@ const getquerydata = (req, res) =>{
     else {
         final_query = f_query
     }
-    console.log("final_query", final_query)
     connection.query(`${final_query}`, (err, results) => {
         if (err) {
             console.log(err);

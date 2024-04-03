@@ -50,8 +50,8 @@
     <h1 style="margin-left: 25%; margin-top: 100px;">Diya Patel(24DEV069)&nbsp;02/02/2024 </h1>
 
     <div class="container">
+        <button><a href="/task2/showtask2" style="color: black; text-decoration: none;">Start</a></button>
         <span id="score"></span>
-        <span id="score2"></span>
         <span id="btn1"></span>
         <input type="button" value="pause" id="pause">
     </div>
@@ -67,7 +67,6 @@
             <td id="td4"></td>
         </tr>
     </table>
-
 
     <script>
         var count = 0;
@@ -95,10 +94,9 @@
             console.log(total);
             var var1 = document.getElementsByTagName('td');
 
-
             const randomColor = Math.floor(Math.random() * 16777215).toString(16);
 
-            for (let i = 0; i < total; i++) {
+            for (let i = 0; i < total; i++){
                 var1[i].style.backgroundColor = "#" + randomColor;
                 var1[i].style.opacity = "1";
             }
@@ -117,14 +115,12 @@
             var countDisplay = document.getElementById("score");
             cells[random_number].addEventListener("click", function () {
                 
-                
                 countDisplay.innerHTML = count;
                 
             });
             
             for(let i = 0; i<total; i++){
                 let element= document.getElementsByTagName(td[i]);
-                element.onclick = null;
             }
         }
 

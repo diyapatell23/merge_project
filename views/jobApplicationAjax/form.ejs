@@ -154,6 +154,8 @@
                                 <legend>
                                     <h2>Work Experience</h2>
                                 </legend>
+                                <input type="hidden" name="work_id" id="workid" value="<%=id%>">
+                                <input type="hidden" name="work_id" id="work_id1" value="<%=user3[0].work_id%>">
                                 <label for="Company name ">Company name : </label><input type="text" name="company1"
                                     id="company1" class="company_check" value="<%=user3[0].company1_Name%>"><span
                                     id="error_company1"></span>
@@ -168,6 +170,7 @@
                                         <label for="To">To: </label> <input type="text" name="to1" id="to1"
                                             class="dateto_check" <% if(user3[0].company1_Leavingdate) { %>value ="<%=(user[0].DoB.getFullYear()) + '-' +(user[0].DoB.getMonth() +1) + '-' +user[0].DoB.getDate()%>" <% } %>><span id="error_to1"></span><br>
                                                 <br>
+                                                <input type="hidden" name="work_id" id="work_id2" value="<%=user3[1].work_id%>">
                                                 <label for=" Company name "> Company name : </label><input type="text"
                                                     name="company2" id="company2" class="company_check"
                                                     value="<%=user3[1].company1_Name%>">&emsp;<span
