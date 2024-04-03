@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Diya Patel(24DEV069)</h1>
+    <input type="text" name="date" id="date1" placeholder="Enter Date">
+    <input type="text" name="month" id="month" placeholder="Enter Month" >
+    <input type="text" name="year" id="year" placeholder="Enter Year" >
+    <input type="text" name="hour" id="hour" placeholder="Enter Hour">
+    <input type="text" name="min" id="min" placeholder="Enter Minute">
+    <input type="text" name="sec" id="sec" placeholder="Enter Second">
+
+    <label for="country">country</label>
+    <select name="country" id="country" onchange="myfun()">
+        <option value="india">India</option>
+        <option value="la">LA</option>
+        <option value="arizona">Arizona</option>
+        <option value="Brelin">Brelin</option>
+        <option value="paris">Paris</option>
+        <option value="pacific">Pacific</option>
+        <option value="Canada">canada</option>
+    </select>
+
+    <div class="data" id="data" style="margin-top: 10px;"></div>
+
+    <script>
+        function myfun(){
+            let date1 = document.getElementById('date1').value;
+            let month = document.getElementById('month').value;
+            let year = document.getElementById('year').value;
+            let hour = document.getElementById('hour').value;
+            let min = document.getElementById('min').value;
+            let sec = document.getElementById('sec').value;
+            let date = new Date(year,month,date1,hour, min,sec);
+           
+            const india = date.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+            const la = date.toLocaleString('en-US', { timeZone: 'America/Los_Angeles' });
+            const arizona = date.toLocaleString('en-US', { timeZone: 'US/Arizona' });
+            const Berlin = date.toLocaleString('en-US', { timeZone: 'Europe/Berlin' });
+            const paris = date.toLocaleString('en-US', { timeZone: 'Europe/Paris' });
+            const pacific = date.toLocaleString('en-US', { timeZone: 'Pacific/Midway' });
+            const Canada = date.toLocaleString('en-US', { timeZone: 'Canada/Saskatchewan' });
+
+            let data = {
+                "india": india,
+                "la": la,
+                "arizona": arizona,
+                "Brelin" :Berlin,
+                "paris" :paris,
+                "pacific" :pacific,
+                "Canada" :Canada
+            };
+            for(time in data){
+            let country = document.getElementById('country').value;
+            if(country === `${time}`){
+                document.getElementById('data').innerHTML = `Timezone in ${time} ${data[time]}`;
+            }
+            }
+        }
+    </script>
+</body>
+</html>

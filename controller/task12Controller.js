@@ -20,9 +20,7 @@ const basicdetail = (req, res) => {
     let state = req.body.state;
     let zipcode = req.body.zipcode;
     let date = req.body.date;
-    console.log(contact);
-    console.log(gender);
-    console.log(fname);
+   
     const query = `INSERT INTO basic_detail( Fname, Lname, Designation,Email, Phone_No,Address_1, Address_2,State, City,Gender,Zip_code,DoB) VALUES("${fname}","${lname}", "${designation}","${email}", "${contact}","${address1}","${address2}","${state}","${city}","${gender}", "${zipcode}", "${date}")`;
     connection.query(query, function (err, data1) {
         let id;
@@ -30,8 +28,6 @@ const basicdetail = (req, res) => {
             console.log(err);
         }
         else {
-            console.log(data1);
-            console.log("iddddd", data1.insertId);
             id = data1.insertId;
         }
         res.json({
@@ -39,9 +35,7 @@ const basicdetail = (req, res) => {
             message: "data added successfully"
         });
     })
-
 }
-
 
 
 const educationdetail = (req, res) => {

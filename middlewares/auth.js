@@ -1,7 +1,7 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const connection = require('../config/config');
-const { result } = require('../controller/task6Controller');
+const { result } = require('../controller/resultGrid');
 require('dotenv').config();
 const auth = (req,res, next)=>{
     if(req.cookies.jwtToken){
@@ -11,12 +11,10 @@ const auth = (req,res, next)=>{
             if(err){
                 res.redirect('/main/loginform');
             }
-
-            let query = `SELECT username FROM users  WHERE username="${decoded.email}"`;
-    
+            let query = `SELECT username FROM users  WHERE username="${decoded.name}"`;
             connection.query(query,(err, result)=>{
                 if(err){
-                    console.log(err);
+                    console.log("auth error",err);
                 }
                 else{
                     if(result.length >0){
