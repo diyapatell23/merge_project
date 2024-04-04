@@ -3,17 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+         #name{
+            text-align: center;
+            font-size: 30px;
+            margin-top: 50px;
+        }
+        #task{
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .container{
+            margin-left: 50px;
+        }
+        #data{
+            justify-content: center;
+        }
+    </style>
     <title>Document</title>
 </head>
 <body>
-    <h1>Diya Patel(24DEV069)</h1>
+    <p id="name">Diya Patel(24DEV069)</p>
+    <p id="task">TimeZone Converter</p>
+    <div class="container">
     <input type="text" name="date" id="date1" placeholder="Enter Date">
     <input type="text" name="month" id="month" placeholder="Enter Month" >
     <input type="text" name="year" id="year" placeholder="Enter Year" >
     <input type="text" name="hour" id="hour" placeholder="Enter Hour">
     <input type="text" name="min" id="min" placeholder="Enter Minute">
     <input type="text" name="sec" id="sec" placeholder="Enter Second">
-
+    
     <label for="country">country</label>
     <select name="country" id="country" onchange="myfun()">
         <option value="india">India</option>
@@ -25,8 +45,8 @@
         <option value="Canada">canada</option>
     </select>
 
+</div>
     <div class="data" id="data" style="margin-top: 10px;"></div>
-
     <script>
         function myfun(){
             let date1 = document.getElementById('date1').value;
@@ -58,6 +78,8 @@
             let country = document.getElementById('country').value;
             if(country === `${time}`){
                 document.getElementById('data').innerHTML = `Timezone in ${time} ${data[time]}`;
+                document.getElementById('data').style.marginLeft = "40%";
+                document.getElementById('data').style.marginTop ="50px"
             }
             }
         }

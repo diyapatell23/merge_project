@@ -16,17 +16,30 @@
             margin-top: 50px;
         }
         td{
-            padding: 10px;
+            padding: 7px;
+        }
+        .container{
+            margin-left: 44%;
+        }
+        #name{
+            text-align: center;
+            font-size: 30px;
+            margin-top: 50px;
+        }
+        #task{
+            text-align: center;
+            font-size: 15px;
+            margin-top: 20px;
         }
     </style>
 </head>
 
 <body>
-    <h1>Diya Patel(24DEV069)</h1>
-    <p>(SELECT * FROM pagination)</p>
+    <p id="name">Diya Patel(24DEV069)</p>
+    <p id="task">(SELECT * FROM pagination)</p>
     <form action="/task7/userdata?page=1" method="post">
         <div class="header">
-            <label for="query">Enter query: </label><input type="text" id="query" name="query">
+            <label for="query" style="margin-left: 200px;">Enter query: </label><input type="text" id="query" name="query">
            <button>Search</button>
         </div>
     </form>

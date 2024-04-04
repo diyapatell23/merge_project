@@ -9,18 +9,35 @@
         td{
             padding: 10px;
         }
+        #name{
+            text-align: center;
+            font-size: 30px;
+            margin-top: 50px;
+        }
+        #task{
+            text-align: center;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        #query{
+            margin-top: 40px;
+            width: 800px;
+        }
+        label{
+            margin-left: 20%;
+        }
     </style>
 </head>
 <body>
-    <h1>Diya Patel(24DEV069)</h1>
-    
+    <p id="name">Diya Patel(24DEV069)</p>
+    <p id="task">Delimiter Search</p>
     <form action="/task8/userdata" method="post">
-        <input type="text" name="query" id="query" placeholder="Type here" style="width: 600px;" value="<%=query%>">
+        <label for="auery">Enter query: </label><input type="text" name="query" id="query"  value="<%=query%>">
         <button>Go</button>
-        <p> example(_Nickie$Nickie.Jenness@gmail.com^Jenness}66:Hanoi{8506490636)</p>
+        <p style="margin-left: 35%; margin-top: 30px;">example(_Nickie$Nickie.Jenness@gmail.com^Jenness}66:Hanoi{8506490636)</p>
     </form>
     
-    <table border="1" style="margin-top: 30px;">
+    <table border="1" style="margin-top: 30px; margin-left: 45%;">
         <tr>
             <td>
                 FirstName
@@ -49,7 +66,7 @@
         </tr>
     </table>
     <% if(fields!==false ) { %>
-    <table border="1" style="margin-top: 30px;">
+    <table border="1" style="margin-top: 30px; margin-left: 25%;">
         <thead>
             <tr>
                 <% for(var k=0;k<fields.length;k++) { %>

@@ -4,17 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #hname{
+            text-align: center;
+            font-size: 30px;
+            margin-top: 50px;
+        }
+        #task{
+            text-align: center;
+            font-size: 20px;
+            margin-top: 20px;
+        }
+        #query{
+            text-align: center;
+        }
+        #name{
+            width: 300px;
+            margin-left: 38%;
+            margin-top: 30px;
+        }
+        #data{
+            margin-left: 40%;
+        }
+    </style>
     <title>Document</title>
 </head>
 
 <body>
-    <h1>Diya Patel(24DEV069)</h1>
-    <p>(Search languages, technologies, gender, location, department, Relationship)</p>
-    <form action="/task13/data" method="post" style="margin-bottom: 50px;">
+    <p id="hname">Diya Patel(24DEV069)</p>
+    <p id="task">Combo Generator</p>
+    <p id="query">(Search languages, technologies, gender, location, department, Relationship)</p>
+    <form action="/task13/data" method="post" style="margin-bottom: 50px; ">
         <input type="text" name="name" id="name" placeholder="Type here">
         <button>Go</button>
     </form>
 
+    <div class="data" id="data">
     <% if(user!==false) { %>
         <% if(user[0].select_type=="checkbox" ) { %>
             <% for(let i=0 ; i<user.length; i++) { %>
@@ -43,7 +68,7 @@
                 </select>
         <% } %>
     <% }  %> 
-
+            </data>
 
 </body>
 

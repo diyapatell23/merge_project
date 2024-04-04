@@ -7,35 +7,21 @@
     <title>Task1</title>
     <style>
         
-        h1 {
-            margin-left: 25%;
-            margin-top: 100px;
-        }
-
         table {
-            width: 30%;
+            width: 20%;
             border-collapse: collapse;
-            margin-left: 30%;
+            margin-left: 40%;
             border-radius: 6px;
         }
-
-        tr {
-            height: 30px;
-        }
-
-        tr,
         td {
-            background-color: grey;
+            background-color: rgb(204, 201, 201);
             padding: 20px;
         }
-
         .button {
-            height: 50px;
-            width: 200px;
-            font-size: 22px;
-            background-color: grey;
+            height: 40px;
+            width: 150px;
+            font-size: 15px;
             cursor: pointer;
-            border-radius: 6px solid grey;
         }
 
         .class1 {
@@ -45,19 +31,25 @@
         }
 
         .class2 {
-            margin-left: 3%;
+            margin-left: 20%;
             margin-top: 5px;
         }
 
         tr:nth-of-type(even) td:nth-of-type(odd),
         tr:nth-of-type(odd) td:nth-of-type(even) {
-            background-color: rgb(36, 34, 34);
+            background-color: rgb(184, 169, 169);
+        }
+        p{
+            text-align: center;
+            font-size: 25px;
+            margin-top: 50px;
         }
     </style>
 </head>
 
 <body>
-    <h1> Diya Patel(24DEV069)&nbsp;01/02/2024</h1>
+    <p> Diya Patel(24DEV069)&nbsp;01/02/2024</p>
+    <p>Dynamic Table</p>
     <div class="class1">
         <input type="button" value="Add row" id="button1" class="button" onclick="myfunction1()">
         <input type="button" value="Remove row" id="button2" class="button" onclick="myfunction2()">

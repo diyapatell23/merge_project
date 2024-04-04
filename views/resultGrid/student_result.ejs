@@ -7,12 +7,12 @@
     <style>
         td{
             text-align: center;
-            padding: 15px;
+            padding: 13px;
         }
 
         .filter{
-            margin-top: 50px;
-            margin-left: 42%;
+            margin-top: 20px;
+            margin-left: 40%;
             display: flex;
             gap: 20px;
             align-items: center;
@@ -29,18 +29,19 @@
 
        .filter-data{
         margin-left: 450px;
-        margin-top: 50px;
        }
-
+       #hname{
+        text-align: center;
+        font-size: 25px;
+       }
     </style>
 </head>
 <body>
-    <H1 style="text-align: center;">Diya Patel(24DEV069)</H1>
-
+    <p id="hname">Diya Patel(24DEV069)</p>
     <div class="filter" >
         <input type="text" name="sid" id="sid" placeholder="Enter Student Id" tabindex="0">
         <button onclick="searchbyid()">Go</button>
-        <p onclick="myfun2()">Show More</p><br>
+        <p onclick="myfun2()" id="showmore">Show More</p><br>
     </div>
 
     <div class="filter-data" id="filter-data" style="display: none;">
@@ -156,9 +157,11 @@
         function myfun2(){
             let data = document.getElementById('filter-data');
             if(data.style.display == "none"){
+                document.getElementById('showmore').innerHTML = "Hide";
                 data.style.display = "block";
             } 
             else if(data.style.display == "block"){
+                document.getElementById('showmore').innerHTML = "Show More";
                 data.style.display = "none";
             }
         }

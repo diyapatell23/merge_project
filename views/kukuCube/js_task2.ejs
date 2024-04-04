@@ -17,23 +17,24 @@
 
         td {
             padding: 30px;
-            border-radius: 10px;
+            border-radius:10px;
         }
 
         #td1 {
-            background-color: lightgrey;
+            background-color: rgb(204, 201, 201);
         }
 
         #td2,
         #td3,
         #td4 {
-            background-color: grey;
+            background-color: rgb(184, 169, 169);
         }
 
         .container {
+            width: 100%;
             display: flex;
-            justify-content: space-around;
-            margin-right: 170px;
+            justify-content: space-evenly;
+            margin-top: 50px;
         }
 
         #btn1 {
@@ -41,18 +42,29 @@
             height: 27px;
             color: black;
         }
+        p{
+            text-align: center;
+            font-size: 25px;
+            margin-top: 50px;
+        }
+        #pause,
+        #start{
+            width: 80px;
+            height: 35px;
+        }
     </style>
 
 
 </head>
 
 <body onload="timer()">
-    <h1 style="margin-left: 25%; margin-top: 100px;">Diya Patel(24DEV069)&nbsp;02/02/2024 </h1>
+    <p>Diya Patel(24DEV069)&nbsp;02/02/2024 </p>
+    <p>Kuku Cube</p>
     <div class="container">
-        <button><a href="/task2/showtask2" style="color: black; text-decoration: none;">Start</a></button>
+        <button id="start"><a href="/task2/showtask2" style="color: black; text-decoration: none;">Start</a></button>
         <span id="score"></span>
         <span id="btn1"></span>
-        <input type="button" value="pause" id="pause">
+        <input type="button" value="Pause" id="pause">
     </div>
 
     <table  cellspacing="0" cellpadding="0" id="table">
@@ -105,7 +117,7 @@
         function score(){
             count++;
             console.log(count);
-            document.getElementById("score").innerHTML = count;
+            document.getElementById("score").innerHTML = "score : " +count;
             let cells = document.getElementById("table").getElementsByTagName('td');
             var countDisplay = document.getElementById("score");
             cells[random_number].addEventListener("click", function () {

@@ -12,14 +12,25 @@
         }
         .dropdown{
            margin-left: 45%;
-           margin-top: 20px;
+           margin-top: 40px;
+        }
+        #name{
+            text-align: center;
+            font-size: 30px;
+            margin-top: 50px;
+        }
+        #task{
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
         }
     </style>
 </head>
 
 <body>
 
-    <H2 style="text-align: center;">Diya Patel (24DEV069)</H2>
+    <p id="name">Diya Patel (24DEV069)</p>
+    <p id="task">Filter Month Task</p>
     <div class="dropdown" >
         <select name="month" id="month" onchange="monthfunc()">
             <% if(month=="december-2023") {%>
