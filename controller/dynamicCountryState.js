@@ -18,7 +18,7 @@ const showstate = (req, res) => {
     try {
         let country = req.params.name;
         let query2 = `select DISTINCT state from country_state_city WHERE country="${country}"`;
-        connection.query(query2, function (err, result2) {
+        connection.query(query2, function (err, result2){
             if (err) {
                 console.log(err);
             }

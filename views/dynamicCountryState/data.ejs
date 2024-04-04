@@ -35,7 +35,7 @@
             let country = document.getElementById('country').value;
             let data = await fetch(`/task14/show/${country}`,{method:"post"});
             let response = await data.json();
-            let stateselect = document.createElement('select');
+            let stateselect = document.createElement('select'); 
             stateselect.id = "stateid";
             response.states.forEach((state)=>{
                 let stateoptions = document.createElement('option');

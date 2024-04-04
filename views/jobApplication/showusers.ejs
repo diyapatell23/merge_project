@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        td{
+            padding: 15px;
+        }
+        table{
+            margin-top: 10%;
+            margin-left: 40%;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <td>Id</td>
+            <td>View details</td>
+        </tr>
+        <% for(let i=0; i<user.length ;i++){ %>
+        <tr>
+            <td><%= user[i].Eid %></td>
+            <td><a href="/task11/form/<%=user[i].Eid%>">View details</a></td>
+        </tr>
+        <% } %>
+    </table>
+</body>
+</html>

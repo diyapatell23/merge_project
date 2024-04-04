@@ -11,6 +11,7 @@ const searchbydelimiter = (req,res)=>{
 const getdelimitersearchdata = (req,res)=>{
     try{
     let data = req.body.query;
+    data = data.trim();
     let f_index = findindex('_', data);
     let fname = findstring(f_index, data, "firstname");
     let l_index = findindex('^', data);
@@ -51,7 +52,7 @@ function findstring(index, data, field) {
     let arr = [];
     for (let i = 0; i < index.length; i++) {
         let str = "";
-        for (let j = index[i] + 1; j < data.length; j++) {
+        for (let j = index[i] + 1; j < data.length; j++){
             if (data[j] == '_') {
                 break;
             }

@@ -19,7 +19,7 @@ const combodata = (req,res)=>{
             console.log(err);
         }
         if(results.length===0) {
-            res.send("Error")
+            res.send("Enter Valid Field")
         }
         res.render('./comboGenerator/data', {user:results, fields:fields, data:data})
     })

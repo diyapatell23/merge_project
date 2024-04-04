@@ -43,7 +43,9 @@ const result = (req, res) => {
 const searchbyid = (req, res) => {
     try {
         id = req.query.id;
-        if (id !== "") {
+        id = id.trim();
+        console.log(id)
+        if (id !== "" && id < 11) {
             connection.query(`SELECT student_master.student_id, student_master.Name, student_master.Email, student_master.ContactNo ,SUM(result.theory_exam_marks) as p_theory, SUM(result.practical_exam_marks) as p_practical FROM student_master JOIN result ON student_master.student_id = result.student_id WHERE result.exam_id = '1' AND student_master.student_id=${id} GROUP BY student_master.student_id , student_master.Name`, (err, result1) => {
                 if (err) {
                     console.log(err);
@@ -68,7 +70,7 @@ const searchbyid = (req, res) => {
             });
         }
         else {
-            res.send("error");
+            res.send("invalid user")
         }
     } catch (err) {
         console.log(err);
@@ -83,30 +85,35 @@ const searchbyname = (req, res) => {
         number = req.query.number;
 
         if (operator == "and") {
-            connection.query(`SELECT student_master.student_id, student_master.Name, student_master.Email, student_master.ContactNo ,SUM(result.theory_exam_marks) as p_theory, SUM(result.practical_exam_marks) as p_practical FROM student_master JOIN result ON student_master.student_id = result.student_id WHERE result.exam_id = '1' AND student_master.Name="${Sname}" AND student_master.Email="${email}" AND student_master.ContactNo="${number}" GROUP BY student_master.student_id , student_master.Name`, (err, result1) => {
-                if (err) {
-                    console.log(err);
-                }
-                connection.query(`SELECT student_master.student_id, student_master.Name ,SUM(result.theory_exam_marks) as t_theory, SUM(result.practical_exam_marks) as t_practical FROM student_master JOIN result ON student_master.student_id = result.student_id WHERE result.exam_id = '2'  AND student_master.Name="${Sname}" AND student_master.Email="${email}" AND student_master.ContactNo="${number}" GROUP BY student_master.student_id , student_master.Name`, (err, result2) => {
+            if (Sname !== "" && email !== "" && number !== "") {
+                connection.query(`SELECT student_master.student_id, student_master.Name, student_master.Email, student_master.ContactNo ,SUM(result.theory_exam_marks) as p_theory, SUM(result.practical_exam_marks) as p_practical FROM student_master JOIN result ON student_master.student_id = result.student_id WHERE result.exam_id = '1' AND student_master.Name="${Sname}" AND student_master.Email="${email}" AND student_master.ContactNo="${number}" GROUP BY student_master.student_id , student_master.Name`, (err, result1) => {
                     if (err) {
                         console.log(err);
                     }
-
-                    connection.query(`SELECT student_master.student_id, student_master.Name ,SUM(result.theory_exam_marks) as f_theory, SUM(result.practical_exam_marks) as f_practical FROM student_master JOIN result ON student_master.student_id = result.student_id WHERE result.exam_id = '3' AND student_master.Name="${Sname}" AND student_master.Email="${email}" AND student_master.ContactNo="${number}" GROUP BY student_master.student_id , student_master.Name`, (err, result3) => {
+                    connection.query(`SELECT student_master.student_id, student_master.Name ,SUM(result.theory_exam_marks) as t_theory, SUM(result.practical_exam_marks) as t_practical FROM student_master JOIN result ON student_master.student_id = result.student_id WHERE result.exam_id = '2'  AND student_master.Name="${Sname}" AND student_master.Email="${email}" AND student_master.ContactNo="${number}" GROUP BY student_master.student_id , student_master.Name`, (err, result2) => {
                         if (err) {
                             console.log(err);
                         }
-                        connection.query(`SELECT * FROM student_master WHERE Name = "${Sname}" AND Email="${email}" AND ContactNo="${number}"`, (err, results, fields) => {
+
+                        connection.query(`SELECT student_master.student_id, student_master.Name ,SUM(result.theory_exam_marks) as f_theory, SUM(result.practical_exam_marks) as f_practical FROM student_master JOIN result ON student_master.student_id = result.student_id WHERE result.exam_id = '3' AND student_master.Name="${Sname}" AND student_master.Email="${email}" AND student_master.ContactNo="${number}" GROUP BY student_master.student_id , student_master.Name`, (err, result3) => {
                             if (err) {
                                 console.log(err);
                             }
+                            connection.query(`SELECT * FROM student_master WHERE Name = "${Sname}" AND Email="${email}" AND ContactNo="${number}"`, (err, results, fields) => {
+                                if (err) {
+                                    console.log(err);
+                                }
 
-                            res.render('./resultGrid/student_result', { user1: result1, user2: result2, user3: result3, user: results, fields: fields, pageno: false })
+                                res.render('./resultGrid/student_result', { user1: result1, user2: result2, user3: result3, user: results, fields: fields, pageno: false })
+                            })
                         })
-                    })
-                });
+                    });
 
-            });
+                });
+            }
+            else{
+                res.send("please enter all details")
+            }
         }
         else {
             connection.query(`SELECT student_master.student_id, student_master.Name, student_master.Email, student_master.ContactNo ,SUM(result.theory_exam_marks) as p_theory, SUM(result.practical_exam_marks) as p_practical FROM student_master JOIN result ON student_master.student_id = result.student_id WHERE result.exam_id = '1' AND (student_master.Name="${Sname}" OR student_master.Email="${email}" OR student_master.ContactNo="${number}") GROUP BY student_master.student_id , student_master.Name`, (err, result1) => {
