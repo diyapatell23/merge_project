@@ -4,7 +4,7 @@ const routes = express.Router();
 
 const controller = require('../controller/jobApplicationAjax');
 const { route } = require('./jobApplicationAjax');
-
+routes.get('/screen', auth, controller.screen);
 routes.get('/form',auth, controller.form);
 routes.post('/basicdetail',auth, controller.basicdetail);
 routes.post('/educationaldetail/:userid',auth, controller.educationdetail);
@@ -13,6 +13,7 @@ routes.post('/languages/:userid',auth, controller.languages);
 routes.post('/technologies/:userid',auth, controller.technologies);
 routes.post('/reference/:userid',auth, controller.reference);
 routes.post('/preferences/:userid',auth, controller.preferances);
+routes.get('/showusers', auth, controller.showusers);
 routes.get('/form/:id',auth, controller.getformdata);
 routes.post('/insertform',auth, controller.insertform);
 routes.post('/updatebasicdetail/:id',auth, controller.updatebasicdetail);

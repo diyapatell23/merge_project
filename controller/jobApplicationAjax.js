@@ -2,6 +2,11 @@
 const connection = require('../config/config');
 const { result } = require('./resultGrid');
 
+
+const screen= (req,res)=>{
+    res.render('./jobApplicationAjax/screen');
+}
+
 const form = (req, res) => {
     try {
         res.render('./jobApplicationAjax/form', { user: [{}], user2: [{}, {}, {}], user3: [{}, {}], user4: [{}, {}, {}], user5: [{}, {}, {}], user6: [{}], user7: [{}], id: false });
@@ -9,6 +14,7 @@ const form = (req, res) => {
         console.log(err);
     }
 }
+
 
 const basicdetail = (req, res) => {
     try {
@@ -275,6 +281,20 @@ const preferances = (req, res) => {
 
 const insertform = (req, res) => {
     res.send("data inserted successfully");
+}
+
+const showusers = (req,res)=>{
+    try {
+        var query = `SELECT Eid FROM basic_detail`;
+        connection.query(query, function (err, result){
+            if (err) {
+                console.log(err);
+            }
+            res.render("./jobApplicationAjax/showusers", {user:result});
+        })
+    } catch (err) {
+        console.log(err)
+    }
 }
 
 const getformdata = (req, res) => {
@@ -650,4 +670,4 @@ const updateform = (req, res) => {
     res.send("data updated");
 }
 
-module.exports = { form, basicdetail, educationdetail, workexperience, technologies, reference, preferances, languages, getformdata, insertform, updatebasicdetail, updateeducationdetail, updatelanguages, updatetechnologies, updateform, referencesupdate, preferencesupdate, updatework_experience };
+module.exports = { form, basicdetail, educationdetail, workexperience, technologies, reference, preferances, languages, getformdata, insertform, updatebasicdetail, updateeducationdetail, updatelanguages, updatetechnologies, updateform, referencesupdate, preferencesupdate, updatework_experience , showusers, screen};

@@ -48,14 +48,12 @@
 
 <body onload="timer()">
     <h1 style="margin-left: 25%; margin-top: 100px;">Diya Patel(24DEV069)&nbsp;02/02/2024 </h1>
-
     <div class="container">
         <button><a href="/task2/showtask2" style="color: black; text-decoration: none;">Start</a></button>
         <span id="score"></span>
         <span id="btn1"></span>
         <input type="button" value="pause" id="pause">
     </div>
-
 
     <table  cellspacing="0" cellpadding="0" id="table">
         <tr>
@@ -71,10 +69,6 @@
     <script>
         var count = 0;
         function myFun() {
-            count++;
-            console.log(count);
-            document.getElementById("score").innerHTML = count;
-
             //insert row
             let table1 = document.getElementById("table");
             let a = table1.rows.length;
@@ -89,39 +83,34 @@
                 let column = table1.rows[j].insertCell(cell);
             }
 
-            //color
+            //random color
             var total = (table1.rows.length) * (table1.rows[0].cells.length);
-            console.log(total);
             var var1 = document.getElementsByTagName('td');
-
             const randomColor = Math.floor(Math.random() * 16777215).toString(16);
-
             for (let i = 0; i < total; i++){
                 var1[i].style.backgroundColor = "#" + randomColor;
                 var1[i].style.opacity = "1";
             }
 
-
+            //random number
             let cells = document.getElementById("table").getElementsByTagName('td');
             let random_number = Math.floor(Math.random() * (total - 4) + 4);
-            console.log(random_number);
-
-
             cells[random_number].style.opacity = "0.5";
 
             cells[random_number].addEventListener("click", myFun);
 
-            
+            score();
+        }
+
+        function score(){
+            count++;
+            console.log(count);
+            document.getElementById("score").innerHTML = count;
+            let cells = document.getElementById("table").getElementsByTagName('td');
             var countDisplay = document.getElementById("score");
             cells[random_number].addEventListener("click", function () {
-                
-                countDisplay.innerHTML = count;
-                
+                countDisplay.innerHTML = count; 
             });
-            
-            // for(let i = 0; i<total; i++){
-            //     let element= document.getElementsByTagName(td[i]);
-            // }
         }
 
         function timer(){
@@ -145,8 +134,6 @@
                 alert("Game Paused!!")
             })
         }
-
     </script>
 </body>
-
 </html>
