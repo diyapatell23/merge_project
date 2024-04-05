@@ -13,7 +13,7 @@
 
         input[type=text],
         input[type=password] {
-            width: 100%;
+            width: 93%;
             padding: 15px;
             margin: 5px 0 22px 0;
             display: inline-block;
@@ -52,14 +52,23 @@
             background-color: #f1f1f1;
             text-align: center;
         }
-       
+        #hname{
+            text-align: center;
+            font-size: 30px;
+            margin-top: 50px;
+        }
+        #task{
+            text-align: center;
+            font-size: 20px;
+            margin-top: 50px;
+        }
     </style>
     <title>Document</title>
 </head>
 
 <body>
-    <h1 style="text-align: center; margin-top: 50px;">Diya Patel(24DEV069)</h1>
-    <h3 style="margin-left: 43%; margin-top: 60px; font-size: 25px;">Registration Form</h3>
+    <p id="hname">Diya Patel(24DEV069)</p>
+    <p id="task">Registration Form</p>
     <form action="/main/login" method="post" onsubmit="return validationfun()">
         <div class="container">
             <br>

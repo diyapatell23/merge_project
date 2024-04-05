@@ -57,11 +57,11 @@
 
 </head>
 
-<body onload="timer()">
+<body >
     <p>Diya Patel(24DEV069)&nbsp;02/02/2024 </p>
     <p>Kuku Cube</p>
     <div class="container">
-        <button id="start"><a href="/task2/showtask2" style="color: black; text-decoration: none;">Start</a></button>
+        <button id="start" onclick="timer()">start</button>
         <span id="score"></span>
         <span id="btn1"></span>
         <input type="button" value="Pause" id="pause">
@@ -79,25 +79,25 @@
     </table>
 
     <script>
-        var count = 0;
+        let count = 0;
         function myFun() {
             //insert row
             let table1 = document.getElementById("table");
             let a = table1.rows.length;
             let row = table.insertRow(a);
             let cell = table1.rows[0].cells.length;
-            for (var i = 0; i < cell; i++) {
-                var cell_plus = row.insertCell(i);
+            for (let i = 0; i < cell; i++) {
+                let cell_plus = row.insertCell(i);
             }
 
             //insert column
-            for (var j = 0; j < table1.rows.length; j++) {
+            for (let j = 0; j < table1.rows.length; j++) {
                 let column = table1.rows[j].insertCell(cell);
             }
 
             //random color
-            var total = (table1.rows.length) * (table1.rows[0].cells.length);
-            var var1 = document.getElementsByTagName('td');
+            let total = (table1.rows.length) * (table1.rows[0].cells.length);
+            let var1 = document.getElementsByTagName('td');
             const randomColor = Math.floor(Math.random() * 16777215).toString(16);
             for (let i = 0; i < total; i++){
                 var1[i].style.backgroundColor = "#" + randomColor;
@@ -117,17 +117,21 @@
         function score(){
             count++;
             console.log(count);
+            let table1 = document.getElementById("table");
+            let total = (table1.rows.length) * (table1.rows[0].cells.length);
+            let random_number = Math.floor(Math.random() * (total - 4) + 4);
             document.getElementById("score").innerHTML = "score : " +count;
             let cells = document.getElementById("table").getElementsByTagName('td');
-            var countDisplay = document.getElementById("score");
+            let countDisplay = document.getElementById("score");
             cells[random_number].addEventListener("click", function () {
                 countDisplay.innerHTML = count; 
             });
         }
 
         function timer(){
-            var sec = 10;
-            var timer = setInterval(function () {
+            console.log("timee")
+            let sec = 10;
+            let timer = setInterval(function () {
                 document.getElementById('btn1').innerHTML = '00:' + sec;
                 sec--;
                 if (sec < 0) {

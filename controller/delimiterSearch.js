@@ -37,9 +37,8 @@ const getdelimitersearchdata = (req,res)=>{
     }
 }
 
-function findindex(operator, data) {
+function findindex(operator, data){
     let index = [];
-    let result;
     for (let i = 0; i < data.length; i++) {
         if (data[i] == operator) {
             index.push(i);
@@ -77,7 +76,6 @@ function findstring(index, data, field) {
         }
         arr.push(str);
     }
-
     let query = '(';
      query+= `${field} LIKE '${arr[0]}'`;
     for (let i = 1; i < arr.length; i++) {

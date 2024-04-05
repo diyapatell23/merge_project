@@ -13,7 +13,7 @@
 
         input[type=text],
         input[type=password] {
-            width: 100%;
+            width: 94%;
             padding: 15px;
             margin: 5px 0 22px 0;
             display: inline-block;
@@ -34,8 +34,9 @@
             margin: 8px 0;
             border: none;
             cursor: pointer;
-            width: 110%;
+            width: 92%;
             opacity: 0.9;
+            text-align: center;
         }
 
         #btn:hover {
@@ -54,14 +55,25 @@
             margin-top: -40px;
             text-align: center;
         }
+        #hname{
+            text-align: center;
+            font-size: 30px;
+            margin-top: 50px;
+        }
+        #task{
+            text-align: center;
+            font-size: 20px;
+            margin-top: 50px;
+        }
+    
     </style>
     <title>Document</title>
 </head>
 <body>
-    <h1 style="text-align: center; margin-top: 50px;">Diya Patel(24DEV069)</h1>
-    <h3 style="margin-left: 47%; margin-top: 60px; font-size: 25px; ">Login</h3>
+    <p id="hname">Diya Patel(24DEV069)</p>
+    <p id="task">Login</p>
 
-    <form action="/main/tasks" method="post" >
+    <form action="/main/tasks" method="post">
         <div class="container">
             <br>
             <label for="name">User Name</label><br>
@@ -72,8 +84,8 @@
             <input type="password" name="password" id="password" placeholder="Enter Passowrd"><br>
             <span id="password_error"></span><br>
             <span id="error"></span><br>
-            <input type="submit" value="Sign In" id="btn">
-        </div>
+            <input type="submit" value="Sign In" id="btn" >
+        </div>  
 
         <div class="forgotpassword">
             <a href="/main/forgotpassword">Forgot Password?</a>
@@ -82,7 +94,9 @@
             <p>Have not registered? <a href="/main/registration">Sign up</a>.</p>
         </div>
     </form>
-   
+    <script>
+        
+    </script>
 </body>
 
 </html>

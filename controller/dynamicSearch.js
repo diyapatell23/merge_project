@@ -2,7 +2,7 @@ const connection = require('../config/config');
 
 const searchquery = (req, res) =>{
     try{
-        res.render('./dynamicSearch/student_data_search', { fields: false, user: false, query: false, pageno: false, totalpage: false });
+        res.render('./dynamicSearch/student_data_search', { fields: false, user: false, query: false, pageno: false, totalpage: false, final_query:false });
     }catch(err){
         console.log(err);
     }
@@ -35,7 +35,7 @@ const getquerydata = (req, res) =>{
             }
             let length = results2.length;
             let totalpage = length / recordsperpage;
-            res.render('./dynamicSearch/student_data_search', { fields: fields, user: results, user2: results2, query: query_name, pageno: page, totalpage: totalpage })
+            res.render('./dynamicSearch/student_data_search', { fields: fields, user: results, user2: results2, query: query_name, pageno: page, totalpage: totalpage , final_query:final_query})
         })
     })
     }catch(err){

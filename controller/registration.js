@@ -70,7 +70,7 @@ const activation = (req, res) => {
 
 const loginform = (req, res) => {
     try {
-        res.render('./registration/loginform', { user: [{}] });
+        res.render('./registration/loginform', {user: [{}] });
     } catch (err) {
         console.log(err);
     }
@@ -80,7 +80,6 @@ const finallogin = (req, res) => {
     try {
         let name = req.body.name;
         let password = req.body.password;
-        var token = crypto.randomBytes(12).toString('hex');
         const payload = { name: name };
         const jwtToken = jwt.sign(payload, process.env.JWT_SECRET_KEY, { expiresIn: '1h' });
         let query = `SELECT username , password ,activationstatus FROM users WHERE username="${name}" AND password="${password}" AND activationstatus=1`
@@ -91,6 +90,9 @@ const finallogin = (req, res) => {
             else if (result.length > 0) {
                 res.cookie("jwtToken", jwtToken);
                 res.redirect('/main/tasks');
+            }
+            else if(name == "" || password == ""){
+                res.send("please enter username and password")
             }
             else {
                 res.send("invalid username or password");
